@@ -1,172 +1,137 @@
-import { useState } from "react";
-import ArrowBack from "./ArrowBack";
-import ArrowNext from "./ArrowNext";
-import ProjectCard from "./ProjectCard";
-
+import { useLayoutEffect, useState } from "react";
 import Slider from "react-slick";
+import Card from "./Card";
 
 const Project = ({
   listProject = [
     {
-      name: "Ecommerce",
+      id: 1,
+      title: "Ecommerce",
       image: "/assets/couch.png",
       stack: {
         react: "/assets/react.png",
         next: "/assets/next.png",
         tailwind: "/assets/tailwind.png",
       },
-      project: "lorem ipsumsd as dff asqqq weer",
+      description: "lorem ipsumsd as dff asqqq weer",
     },
     {
-      name: "Soul Amiga",
-      image: "/assets/ecom.png",
-      stack: {
-        react: "/assets/react.png",
-        next: "/assets/next.png",
-        tailwind: "/assets/tailwind.png",
-      },
-      project: "lorem ipsumsd as dff asqqq weer",
-    },
-    {
-      name: "Crud App",
+      id: 2,
+      title: "Ecommerce",
       image: "/assets/couch.png",
       stack: {
         react: "/assets/react.png",
         next: "/assets/next.png",
         tailwind: "/assets/tailwind.png",
       },
-      project: "lorem ipsumsd as dff asqqq weer",
+      description: "lorem ipsumsd as dff asqqq weer",
     },
     {
-      name: "Baseball game",
-      image: "/assets/ecom.png",
+      id: 3,
+      title: "Ecommerce",
+      image: "/assets/couch.png",
       stack: {
         react: "/assets/react.png",
         next: "/assets/next.png",
         tailwind: "/assets/tailwind.png",
       },
-      project: "lorem ipsumsd as dff asqqq weer",
+      description: "lorem ipsumsd as dff asqqq weer",
     },
     {
-      name: "Ai Chatbot",
-      image: "/assets/ecom.png",
+      id: 4,
+      title: "Ecommerce",
+      image: "/assets/couch.png",
       stack: {
         react: "/assets/react.png",
         next: "/assets/next.png",
         tailwind: "/assets/tailwind.png",
       },
-      project: "lorem ipsumsd as dff asqqq weer",
+      description: "lorem ipsumsd as dff asqqq weer",
     },
+    {
+      id: 5,
+      title: "Ecommerce",
+      image: "/assets/couch.png",
+      stack: {
+        react: "/assets/react.png",
+        next: "/assets/next.png",
+        tailwind: "/assets/tailwind.png",
+      },
+      description: "lorem ipsumsd as dff asqqq weer",
+    },
+    {
+      id: 6,
+      title: "Ecommerce",
+      image: "/assets/couch.png",
+      stack: {
+        react: "/assets/react.png",
+        next: "/assets/next.png",
+        tailwind: "/assets/tailwind.png",
+      },
+      description: "lorem ipsumsd as dff asqqq weer",
+    },
+
+    // Your project data here
   ],
 }) => {
-  const settings = {
+  const [isMobile, setIsMobile] = useState(false);
+  const [sliderRef, setSliderRef] = useState(null);
+
+  useLayoutEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize(); // initial check
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const sliderSettings = {
     dots: true,
-    arrows: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 1,
     slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
   };
 
-  const [sliderRef, setSliderRef] = useState(null);
-  const [activeIndex, setActiveIndex] = useState(null);
-
-  const handleMouseEnter = (index) => {
-    setActiveIndex(index);
-  };
-
-  const handleMouseLeave = () => {
-    setActiveIndex(null);
-  };
-
-  const cardStyle = (image) => ({
-    backgroundImage: `url(${image})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    minHeight: "144px",
-    position: "relative",
-    transition: "all 0.3s ease-in-out",
-    ":before": {
-      content: '""',
-      position: "absolute",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      backgroundColor: "rgba(0, 0, 0, 0.4)",
-      opacity: 0,
-      zIndex: 1,
-      transition: "all 0.3s ease-in-out",
-      backdropFilter: "blur(8px)",
-      filter: "blur(8px)",
-    },
-    ":hover:before": {
-      opacity: 1,
-    },
-    ":hover .card-content": {
-      transform: "translateY(0)",
-      opacity: 1,
-      visibility: "visible",
-    },
-  });
-
-  return (
-    <>
-      <div className="mx-auto" id="Projects">
+  if (isMobile) {
+    return (
+      <div className="w-full">
         <Slider
-          {...settings}
+          {...sliderSettings}
+          dots={true}
           arrows={false}
           ref={setSliderRef}
-          className="flex items-stretch justify-items-stretch bg-white"
-          id="projects"
         >
-          {listProject.map((project, index) => (
-            <ProjectCard
-              key={index}
-              project={project}
-              index={index}
-              activeIndex={activeIndex}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              style={{ ...cardStyle(project.image) }}
+          {listProject.map((project) => (
+            <Card
+              key={project.id}
+              image={project.image}
+              title={project.title}
+              description={project.description}
             />
           ))}
         </Slider>
+        {/* Your slider controls */}
+      </div>
+    );
+  }
 
-        <div className="flex w-full bg-black-500 items-center justify-end">
-          <div className="flex flex-none justify-between w-auto mt-14">
-            <div
-              className="mx-4 flex items-center justify-center h-14 w-14 rounded-full bg-white border-green-500 border hover:bg-green-500 hover:text-white-500 transition-all text-green-500 cursor-pointer"
-              onClick={sliderRef?.slickPrev}
-            >
-              <ArrowBack className="h-6 w-6 " />
-            </div>
-            <div
-              className="flex items-center justify-center h-14 w-14 rounded-full bg-white border-green-500 border hover:bg-green-500 hover:text-white-500 transition-all text-green-500 cursor-pointer"
-              onClick={sliderRef?.slickNext}
-            >
-              <ArrowNext className="h-6 w-6 " />
-            </div>
-          </div>
+  return (
+    <section className="bg-gray-100">
+      <div className="container mx-auto px-5 py-2 lg:px-32 lg:pt-12 flex justify-center items-center">
+        <div className="m-1 flex flex-wrap md:-m-2 lg:flex-row">
+          {listProject.map((project) => (
+            <Card
+              key={project.id}
+              image={project.image}
+              title={project.title}
+              description={project.description}
+            />
+          ))}
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

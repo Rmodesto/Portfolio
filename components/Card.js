@@ -38,18 +38,18 @@ const Card = ({ image, title, description }) => {
 
   return (
     <motion.div
-      className="bg-white p-4 rounded-md shadow-md overflow-hidden relative"
+      className="rounded-md shadow-md overflow-hidden relative"
       variants={cardVariants}
       initial="initial"
       whileHover="hover"
     >
       <motion.img
-        className="w-full h-64 object-cover"
+        className="w-full object-cover"
         src={image}
         alt={title}
         variants={imageVariants}
       />
-      <motion.div className="mt-4" variants={textVariants}>
+      <motion.div className="" variants={textVariants}>
         <h3 className="text-xl font-semibold">{title}</h3>
         <p className="text-gray-600">{description}</p>
       </motion.div>

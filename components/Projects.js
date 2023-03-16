@@ -7,7 +7,7 @@ const Project = ({
     {
       id: 1,
       title: "Ecommerce",
-      image: "/assets/couch.png",
+      image: "/assets/black.webp",
       stack: {
         react: "/assets/react.png",
         next: "/assets/next.png",
@@ -16,9 +16,9 @@ const Project = ({
       description: "lorem ipsumsd as dff asqqq weer",
     },
     {
-      id: 2,
+      id: 1,
       title: "Ecommerce",
-      image: "/assets/couch.png",
+      image: "/assets/auto.webp",
       stack: {
         react: "/assets/react.png",
         next: "/assets/next.png",
@@ -27,9 +27,9 @@ const Project = ({
       description: "lorem ipsumsd as dff asqqq weer",
     },
     {
-      id: 3,
+      id: 1,
       title: "Ecommerce",
-      image: "/assets/couch.png",
+      image: "/assets/og.webp",
       stack: {
         react: "/assets/react.png",
         next: "/assets/next.png",
@@ -38,9 +38,9 @@ const Project = ({
       description: "lorem ipsumsd as dff asqqq weer",
     },
     {
-      id: 4,
+      id: 1,
       title: "Ecommerce",
-      image: "/assets/couch.png",
+      image: "/assets/down.webp",
       stack: {
         react: "/assets/react.png",
         next: "/assets/next.png",
@@ -49,9 +49,9 @@ const Project = ({
       description: "lorem ipsumsd as dff asqqq weer",
     },
     {
-      id: 5,
+      id: 1,
       title: "Ecommerce",
-      image: "/assets/couch.png",
+      image: "/assets/porsh.webp",
       stack: {
         react: "/assets/react.png",
         next: "/assets/next.png",
@@ -60,9 +60,9 @@ const Project = ({
       description: "lorem ipsumsd as dff asqqq weer",
     },
     {
-      id: 6,
+      id: 1,
       title: "Ecommerce",
-      image: "/assets/couch.png",
+      image: "/assets/web1.webp",
       stack: {
         react: "/assets/react.png",
         next: "/assets/next.png",
@@ -70,7 +70,6 @@ const Project = ({
       },
       description: "lorem ipsumsd as dff asqqq weer",
     },
-
     // Your project data here
   ],
 }) => {
@@ -85,6 +84,9 @@ const Project = ({
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const firstRow = listProject.slice(0, 3);
+  const secondRow = listProject.slice(3, 6);
 
   const sliderSettings = {
     dots: true,
@@ -119,16 +121,26 @@ const Project = ({
 
   return (
     <section className="bg-gray-100">
-      <div className="container mx-auto px-5 py-2 lg:px-32 lg:pt-12 flex justify-center items-center">
-        <div className="m-1 flex flex-wrap md:-m-2 lg:flex-row">
-          {listProject.map((project) => (
-            <Card
-              key={project.id}
-              image={project.image}
-              title={project.title}
-              description={project.description}
-            />
-          ))}
+      <div className="container mx-auto px-5 py-2 lg:px-32 lg:pt-12">
+        <div className="flex flex-wrap -mx-2 md:-mx-4">
+          {listProject.map((project, index) => {
+            if (index < 6) {
+              return (
+                <div
+                  key={project.id}
+                  className="w-full md:w-1/3 px-2 md:px-4 mb-4 md:mb-8"
+                >
+                  <div style={{ height: "250px" }}>
+                    <Card
+                      image={project.image}
+                      title={project.title}
+                      description={project.description}
+                    />
+                  </div>
+                </div>
+              );
+            }
+          })}
         </div>
       </div>
     </section>

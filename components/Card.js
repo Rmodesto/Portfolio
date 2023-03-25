@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-const Card = ({ image, title, description }) => {
+const Card = ({ image, title, description, stack = [] }) => {
   const cardVariants = {
     hover: {
       scale: 1.05,
@@ -36,6 +36,17 @@ const Card = ({ image, title, description }) => {
     },
   };
 
+  const stackVariants = {
+    hover: {
+      opacity: 1,
+      transition: { duration: 0.3 },
+    },
+    initial: {
+      opacity: 0,
+      transition: { duration: 0.3 },
+    },
+  };
+
   return (
     <motion.div
       className="rounded-md shadow-md overflow-hidden relative"
@@ -49,9 +60,20 @@ const Card = ({ image, title, description }) => {
         alt={title}
         variants={imageVariants}
       />
-      <motion.div className="" variants={textVariants}>
+
+      <motion.div className="p-2" variants={textVariants}>
         <h3 className="text-xl font-semibold">{title}</h3>
         <p className="text-gray-600">{description}</p>
+        <motion.div
+          variants={stackVariants}
+          className="absolute bottom-0 left-0 right-0 pb-2 pt-4 text-black"
+        >
+          {/*when card is hovered show react-icons */}
+
+          <div className="flex justify-center items-center space-x-2">
+            {stack}
+          </div>
+        </motion.div>
       </motion.div>
     </motion.div>
   );

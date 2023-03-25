@@ -1,73 +1,63 @@
 import { useLayoutEffect, useState } from "react";
+import { FaReact } from "react-icons/fa";
+import { SiTailwindcss } from "react-icons/si";
 import Slider from "react-slick";
 import Card from "./Card";
+
+const getIcon = (stack) => {
+  switch (stack) {
+    case "react":
+      return <FaReact key={stack} />;
+
+    case "tailwind":
+      return <SiTailwindcss key={stack} />;
+    default:
+      return null;
+  }
+};
 
 const Project = ({
   listProject = [
     {
       id: 1,
       title: "Ecommerce",
-      image: "/assets/black.webp",
-      stack: {
-        react: "/assets/react.png",
-        next: "/assets/next.png",
-        tailwind: "/assets/tailwind.png",
-      },
+      image: "/assets/auto.webp",
+      stack: ["react", "nextjs", "tailwind"],
       description: "lorem ipsumsd as dff asqqq weer",
     },
     {
-      id: 1,
+      id: 2,
       title: "Ecommerce",
       image: "/assets/auto.webp",
-      stack: {
-        react: "/assets/react.png",
-        next: "/assets/next.png",
-        tailwind: "/assets/tailwind.png",
-      },
+      stack: ["react", "nextjs", "tailwind"],
       description: "lorem ipsumsd as dff asqqq weer",
     },
     {
-      id: 1,
+      id: 3,
       title: "Ecommerce",
       image: "/assets/og.webp",
-      stack: {
-        react: "/assets/react.png",
-        next: "/assets/next.png",
-        tailwind: "/assets/tailwind.png",
-      },
+      stack: ["react", "nextjs", "tailwind"],
       description: "lorem ipsumsd as dff asqqq weer",
     },
     {
-      id: 1,
+      id: 4,
       title: "Ecommerce",
       image: "/assets/down.webp",
-      stack: {
-        react: "/assets/react.png",
-        next: "/assets/next.png",
-        tailwind: "/assets/tailwind.png",
-      },
+      stack: ["react", "nextjs", "tailwind"],
       description: "lorem ipsumsd as dff asqqq weer",
     },
     {
-      id: 1,
+      id: 5,
       title: "Ecommerce",
       image: "/assets/porsh.webp",
-      stack: {
-        react: "/assets/react.png",
-        next: "/assets/next.png",
-        tailwind: "/assets/tailwind.png",
-      },
+      stack: ["react", "nextjs", "tailwind"],
       description: "lorem ipsumsd as dff asqqq weer",
     },
     {
-      id: 1,
+      id: 6,
       title: "Ecommerce",
       image: "/assets/web1.webp",
-      stack: {
-        react: "/assets/react.png",
-        next: "/assets/next.png",
-        tailwind: "/assets/tailwind.png",
-      },
+      stack: ["react", "nextjs", "tailwind"],
       description: "lorem ipsumsd as dff asqqq weer",
     },
     // Your project data here
@@ -130,11 +120,13 @@ const Project = ({
                   key={project.id}
                   className="w-full md:w-1/3 px-2 md:px-4 mb-4 md:mb-8"
                 >
-                  <div style={{ height: "250px" }}>
+                  <div className="min-h-max">
                     <Card
+                      key={project.id}
                       image={project.image}
                       title={project.title}
                       description={project.description}
+                      stack={project.stack.map((stack) => getIcon(stack)) || []}
                     />
                   </div>
                 </div>

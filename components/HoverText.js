@@ -25,12 +25,8 @@ const HoverText = ({ text }) => {
           className="hero relative bg-black-500 flex items-center max-h-min justify-center min-h-screen bg-gray-900"
           id="background-container"
         >
-          {clientSideSketch && (
-            <Sketch
-              sketch={clientSideSketch}
-              className="absolute top-0 left-0 z-0 w-full h-full"
-            />
-          )}
+
+   
           <div className="hero__content relative z-10">
             {/* ... */}
             <div className="hero__content">
@@ -52,6 +48,6 @@ const HoverText = ({ text }) => {
           </div>
         </section>
       );
-    };
+ 
     
     export default Hero;

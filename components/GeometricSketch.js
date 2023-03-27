@@ -17,22 +17,18 @@ const GeometricSketch = () => {
         p.background(255, 255, 255, 0);
       };
 
-      // Add a custom dotted ellipse function
-      const dottedEllipse = (x, y, w, h, segments, strokeWeight) => {
+      // Add a custom function to draw a dotted line
+      const drawDottedLine = (x1, y1, x2, y2, segments, strokeWeight) => {
         p.push();
         p.strokeWeight(strokeWeight);
-        p.beginShape();
         for (let i = 0; i < segments; i++) {
-          let angle = p.map(i, 0, segments, 0, p.TWO_PI);
-          let ex = x + (w / 2) * p.cos(angle);
-          let ey = y + (h / 2) * p.sin(angle);
+          let t = i / (segments - 1);
+          let x = p.lerp(x1, x2, t);
+          let y = p.lerp(y1, y2, t);
           if (i % 2 === 0) {
-            p.vertex(ex, ey);
-          } else {
-            p.curveVertex(ex, ey);
+            p.point(x, y);
           }
         }
-        p.endShape(p.CLOSE);
         p.pop();
       };
 
@@ -76,6 +72,26 @@ const GeometricSketch = () => {
           let x = hexagonX + (hexagonRadius - greenCircleRadius) * p.cos(angle);
           let y = hexagonY + (hexagonRadius - greenCircleRadius) * p.sin(angle);
           p.ellipse(x, y, greenCircleRadius * 2, greenCircleRadius * 2);
+
+          // Calculate the start and end points of the dotted line
+          let lineAngle = angle + 180; // Rotate the line to converge on the overlapping vertex
+          let lineLength = greenCircleRadius * 2;
+          let x1 = x + (lineLength / 2) * p.cos(lineAngle);
+          let y1 = y + (lineLength / 2) * p.sin(lineAngle);
+          let x2 = x - (lineLength / 2) * p.cos(lineAngle);
+          let y2 = y - (lineLength / 2) * p.sin(lineAngle);
+
+          // Draw the dotted line across the diameter of the green circle
+          let dottedLineSegments = 20;
+          let dottedLineStrokeWeight = 2;
+          drawDottedLine(
+            x1,
+            y1,
+            x2,
+            y2,
+            dottedLineSegments,
+            dottedLineStrokeWeight
+          );
         }
       };
     };

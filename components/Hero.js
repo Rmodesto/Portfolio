@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import ButtonOutline from "./ButtonOutline";
 
 const Sketch = dynamic(() => import("./Sketch"), { ssr: false });
@@ -22,7 +23,9 @@ const Hero = () => {
           <span className="text-blue"> interactive</span> web applications.
         </p>
         <div className="pt-5">
-          <ButtonOutline text="View my work" className="pt-3" />
+          <Link href="#projects" id="projects">
+            <ButtonOutline text="View my work" className="pt-3" />
+          </Link>
         </div>
       </div>
     </section>

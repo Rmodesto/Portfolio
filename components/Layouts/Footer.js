@@ -2,7 +2,7 @@ import SocialLink from "../SocialLinks";
 
 const Footer = () => {
   return (
-    <footer className="bg-black-500">
+    <footer className="bg-black-100 py-24">
       <div className="container flex justify-center items-center">
         <div className="flex flex-col md:flex-row justify-between items-center py-4">
           <div className="flex flex-col md:flex-row items-center space-x-4">

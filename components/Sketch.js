@@ -81,7 +81,7 @@ const Sketch = (p) => {
     };
 
     myP5 = new p5(sketch, myRef.current);
-    // Add these lines
+
     myP5.canvas.style.position = "absolute";
     myP5.canvas.style.zIndex = "-1";
     myP5.canvas.style.top = "0";

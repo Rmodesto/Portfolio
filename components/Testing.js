@@ -1,137 +1,108 @@
- import { useLayoutEffect, useState } from "react";
+import p5 from "p5";
+import { useEffect, useRef } from "react";
 
-import DiNextjs from "react-icons/di";
-import FaReact from "react-icons/fa";
-import SiTailwindcss from "react-icons/si";
-import Slider from "react-slick";
-import Card from "./Card";
+const GeometricSketch = ({ width, height }) => {
+  const canvasRef = useRef(null);
+  const sketchRef = useRef(null);
 
-const Project = ({
-  listProject = [
-    {
-      id: 1,
-      title: "Ecommerce",
-      image: "/assets/auto.webp",
-      stack: { react: FaReact, nextjs: DiNextjs, tailwind: SiTailwindcss },
-      description: "lorem ipsumsd as dff asqqq weer",
-    },
-    {
-      id: 2,
-      title: "Ecommerce",
-      image: "/assets/auto.webp",
-      stack: { react: FaReact, nextjs: DiNextjs, tailwind: SiTailwindcss },
-      description: "lorem ipsumsd as dff asqqq weer",
-    },
-    {
-      id: 3,
-      title: "Ecommerce",
-      image: "/assets/og.webp",
-      stack: { react: FaReact, nextjs: DiNextjs, tailwind: SiTailwindcss },
-      description: "lorem ipsumsd as dff asqqq weer",
-    },
-    {
-      id: 4,
-      title: "Ecommerce",
-      image: "/assets/down.webp",
-      stack: { react: FaReact, nextjs: DiNextjs, tailwind: SiTailwindcss },
-      description: "lorem ipsumsd as dff asqqq weer",
-    },
-    {
-      id: 5,
-      title: "Ecommerce",
-      image: "/assets/porsh.webp",
-      stack: { react: FaReact, nextjs: DiNextjs, tailwind: SiTailwindcss },
-      description: "lorem ipsumsd as dff asqqq weer",
-    },
-    {
-      id: 6,
-      title: "Ecommerce",
-      image: "/assets/web1.webp",
-      stack: { react: FaReact, nextjs: DiNextjs, tailwind: SiTailwindcss },
-      description: "lorem ipsumsd as dff asqqq weer",
-    },
-    // Your project data here
-  ],
-}) => {
-  const [isMobile, setIsMobile] = useState(false);
-  const [sliderRef, setSliderRef] = useState(null);
+  useEffect(() => {
+    const sketch = (p) => {
+      let hexagonSize = Math.min(width, height) * 0.9;
+      let circleSize = (hexagonSize * Math.sqrt(3)) / 3;
 
-  useLayoutEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
+      p.setup = () => {
+        p.createCanvas(width, height).parent(canvasRef.current);
+        p.angleMode(p.DEGREES);
+        p.background(255, 255, 255, 0);
+      };
+
+      // Add a custom function to draw a dotted line
+      const drawDottedLine = (x1, y1, x2, y2, segments, strokeWeight) => {
+        p.push();
+        p.strokeWeight(strokeWeight);
+        for (let i = 0; i < segments; i++) {
+          let t = i / (segments - 1);
+          let x = p.lerp(x1, x2, t);
+          let y = p.lerp(y1, y2, t);
+          if (i % 2 === 0) {
+            p.point(x, y);
+          }
+        }
+        p.pop();
+      };
+
+      p.draw = () => {
+        p.background(255, 255, 255, 0);
+        p.strokeWeight(1);
+        p.stroke("#2563EB");
+        p.noFill();
+
+        // draw hexagon
+        let hexagonX = p.width / 2;
+        let hexagonY = p.height / 2 - 10;
+        let hexagonRadius = hexagonSize / 2;
+        p.beginShape();
+        for (let i = 0; i < 6; i++) {
+          let angle = 60 * i + rotationAngle; // Add rotation angle to hexagon
+          let x = hexagonX + hexagonRadius * p.cos(angle);
+          let y = hexagonY + hexagonRadius * p.sin(angle);
+          p.vertex(x, y);
+        }
+        p.endShape(p.CLOSE);
+
+        // draw circle
+        let circleX = hexagonX;
+        let circleY = hexagonY;
+        let circleRadius = circleSize / 2;
+        p.fill("#2563EB ");
+        p.strokeWeight(0.5);
+        p.stroke("#3A414B");
+        p.ellipse(circleX, circleY, circleSize, circleSize);
+
+        // draw three green border circles
+        let greenCircleRadius = hexagonRadius / 2.17;
+
+        p.noFill();
+        p.stroke(0, 255, 0);
+        p.strokeWeight(0.25);
+
+        for (let i = 0; i < 3; i++) {
+          let angle = 120 * i - 60 + rotationAngle; // Add rotation angle to green circles
+          let x = hexagonX + (hexagonRadius - greenCircleRadius) * p.cos(angle);
+          let y = hexagonY + (hexagonRadius - greenCircleRadius) * p.sin(angle);
+          p.ellipse(x, y, greenCircleRadius * 2, greenCircleRadius * 2);
+
+          // Calculate the start and end points of the dotted line
+          let lineAngle = angle + 180; // Rotate the line to converge on the overlapping vertex
+          let lineLength = greenCircleRadius * 2;
+          let x1 = x + (lineLength / 2) * p.cos(lineAngle);
+          let y1 = y + (lineLength / 2) * p.sin(lineAngle);
+          let x2 = x - (lineLength / 2) * p.cos(lineAngle);
+          let y2 = y - (lineLength / 2) * p.sin(lineAngle);
+
+          // Draw the dotted line across the diameter of the green circle
+          let dottedLineSegments = 20;
+          let dottedLineStrokeWeight = 2;
+          drawDottedLine(
+            x1,
+            y1,
+            x2,
+            y2,
+            dottedLineSegments,
+            dottedLineStrokeWeight
+          );
+        }
+      };
     };
-    handleResize(); // initial check
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
-  const firstRow = listProject.slice(0, 3);
-  const secondRow = listProject.slice(3, 6);
+    sketchRef.current = new p5(sketch);
 
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
+    return () => {
+      sketchRef.current.remove();
+    };
+  }, [width, height]);
 
-  if (isMobile) {
-    return (
-      <div className="w-full">
-        <Slider
-          {...sliderSettings}
-          dots={true}
-          arrows={false}
-          ref={setSliderRef}
-        >
-          {listProject.map((project) => (
-            <Card
-              key={project.id}
-              image={project.image}
-              title={project.title}
-              description={project.description}
-            />
-          ))}
-        </Slider>
-        {/* Your slider controls */}
-      </div>
-    );
-  }
-
-  return (
-    <section className="bg-gray-100">
-      <div className="container mx-auto px-5 py-2 lg:px-32 lg:pt-12">
-        <div className="flex flex-wrap -mx-2 md:-mx-4">
-          {listProject.map((project, index) => {
-            if (index < 6) {
-              return (
-                <div
-                  key={project.id}
-                  className="w-full md:w-1/3 px-2 md:px-4 mb-4 md:mb-8"
-                >
-                  <div className="min-h-max">
-                    <Card
-                      key={project.id}
-                      image={project.image}
-                      title={project.title}
-                      description={project.description}
-                      stack={[
-                        project.stack.react,
-                        project.stack.nextjs,
-                        project.stack.tailwind,
-                      ]}
-                    />
-                  </div>
-                </div>
-              );
-            }
-          })}
-        </div>
-      </div>
-    </section>
-  );
+  return <div ref={canvasRef}></div>;
 };
 
-export default Project;
-
+export default GeometricSketch;

@@ -1,7 +1,9 @@
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaReact } from "react-icons/fa";
 import { SiTailwindcss } from "react-icons/si";
 import Slider from "react-slick";
+import ArrowBack from "./ArrowBack";
+import ArrowNext from "./ArrowNext";
 import Card from "./Card";
 
 const getIcon = (stack) => {
@@ -66,7 +68,7 @@ const Project = ({
   const [isMobile, setIsMobile] = useState(false);
   const [sliderRef, setSliderRef] = useState(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
@@ -88,7 +90,7 @@ const Project = ({
 
   if (isMobile) {
     return (
-      <div className="w-full">
+      <div className="w-full" id="projects">
         <Slider
           {...sliderSettings}
           dots={true}
@@ -105,13 +107,29 @@ const Project = ({
           ))}
         </Slider>
         {/* Your slider controls */}
+        <div className="flex w-full bg-black-100 items-center justify-center">
+          <div className="flex flex-none justify-between w-auto mt-14">
+            <div
+              className="mx-4 flex items-center justify-center h-14 w-14 rounded-full bg-white border-green-500 border hover:bg-green-500 hover:text-white-500 transition-all text-green-500 cursor-pointer"
+              onClick={sliderRef?.slickPrev}
+            >
+              <ArrowBack className="h-6 w-6 " />
+            </div>
+            <div
+              className="flex items-center justify-center h-14 w-14 rounded-full bg-white border-green-500 border hover:bg-green-500 hover:text-white-500 transition-all text-green-500 cursor-pointer"
+              onClick={sliderRef?.slickNext}
+            >
+              <ArrowNext className="h-6 w-6" />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
 
   return (
-    <section className="bg-gray-100">
-      <div className="container mx-auto px-5 py-2 lg:px-32 lg:pt-12">
+    <section className="bg-black-500 py-24" id="projects">
+      <div className="container mx-auto px-5 lg:px-32 ">
         <div className="flex flex-wrap -mx-2 md:-mx-4">
           {listProject.map((project, index) => {
             if (index < 6) {
@@ -120,7 +138,7 @@ const Project = ({
                   key={project.id}
                   className="w-full md:w-1/3 px-2 md:px-4 mb-4 md:mb-8"
                 >
-                  <div className="min-h-max">
+                  <div className="h-full">
                     <Card
                       key={project.id}
                       image={project.image}

@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const ProjectCard = ({
   project,
   index,
@@ -9,14 +11,23 @@ const ProjectCard = ({
   const isActive = index === activeIndex;
   return (
     <div
-      className="flex items-end justify-end w-full h-full px-4 py-6 overflow-hidden text-white rounded-lg shadow-lg"
+      className="relative w-full overflow-hidden -mb-8 text-white rounded-lg shadow-lg"
       onMouseEnter={() => onMouseEnter(index)}
       onMouseLeave={() => onMouseLeave()}
       style={style}
     >
-      <div className="card-content transition-all transform translate-y-full opacity-0 visibility-hidden">
-        <h3 className="text-2xl font-bold mb-2">{project.name}</h3>
-        <p className="text-gray-300 text-sm">{project.project}</p>
+      <Image
+        src={project.image}
+        alt={project.name}
+        layout="fill"
+        objectFit="cover"
+        quality={100}
+      />
+      <div className="relative">
+        <div className="absolute inset-0 z-10 flex flex-col items-end justify-end p-4 transition-all transform translate-y-full hover:translate-y-0">
+          <h3 className="text-2xl font-bold mb-2">{project.name}</h3>
+          <p className="text-gray-300 text-sm">{project.project}</p>
+        </div>
       </div>
     </div>
   );

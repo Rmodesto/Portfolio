@@ -12,7 +12,7 @@ const GeometricSketch = () => {
       let rotationAngle = 40; // Set rotation angle for hexagon and green circles
 
       p.setup = () => {
-        p.createCanvas(400, 400).parent(canvasRef.current);
+        p.createCanvas(200, 200).parent(canvasRef.current);
         p.angleMode(p.DEGREES);
         p.background(255, 255, 255, 0);
       };
@@ -35,7 +35,7 @@ const GeometricSketch = () => {
       p.draw = () => {
         p.background(255, 255, 255, 0);
         p.strokeWeight(1);
-        p.stroke(0);
+        p.stroke("#2563EB");
         p.noFill();
 
         // draw hexagon
@@ -55,9 +55,9 @@ const GeometricSketch = () => {
         let circleX = hexagonX;
         let circleY = hexagonY;
         let circleRadius = circleSize / 2;
-        p.fill(255);
-        p.strokeWeight(3);
-        p.stroke(0);
+        p.fill("#2563EB ");
+        p.strokeWeight(0.5);
+        p.stroke("#3A414B");
         p.ellipse(circleX, circleY, circleSize, circleSize);
 
         // draw three green border circles

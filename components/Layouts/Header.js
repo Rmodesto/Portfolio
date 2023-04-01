@@ -3,9 +3,9 @@ import { useState } from "react";
 import Logo from "../../components/Logo";
 
 const navigation = [
-  { name: "Projects", href: "/projects" },
-  { name: "About", href: "/about" },
-  { name: "Contact", href: "/contact" },
+  { name: "Projects", id: "projects" },
+  { name: "About", id: "about" },
+  { name: "Contact", id: "contact" },
 ];
 
 const Navbar = () => {
@@ -15,15 +15,18 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleLinkClick = () => {
+  const handleLinkClick = (id) => {
     setIsOpen(false);
+
+    const targetElement = document.getElementById(id);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-black-500 p-6">
-      <Link href="/">
-        <Logo />
-      </Link>
+    <nav className="flex items-center md:px-24 justify-between flex-wrap bg-black-500 p-6">
+      <Logo />
       <div className="flex md:hidden" onClick={toggleMenu}>
         {isOpen ? (
           <svg
@@ -63,14 +66,13 @@ const Navbar = () => {
         }`}
       >
         {navigation.map((item) => (
-          <Link
-            key={item.name}
-            href={item.href}
-            id={item.name}
-            onClick={handleLinkClick}
-            className="block mt-4 md:inline-block text-white font-acumin tracking-widest md:mt-0 md:ml-6"
-          >
-            {item.name}
+          <Link key={item.name} href={`#${item.id}`} passHref>
+            <div
+              className="block mt-4 md:inline-block text-white font-acumin text-xl tracking-widest cursor-pointer selection:tracking-widest md:mt-0 md:ml-6"
+              onClick={() => handleLinkClick(item.id)}
+            >
+              {item.name}
+            </div>
           </Link>
         ))}
       </div>

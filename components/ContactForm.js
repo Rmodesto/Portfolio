@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { sendContactForm } from "../lib/api";
+
 import Spinner from "./Spinner";
 
 const initValues = { name: "", email: "", subject: "", message: "" };
@@ -42,21 +43,15 @@ const Contact = () => {
   };
 
   return (
-    <div className="bg-black-500">
+    <div className="bg-black-500 py-24 px-8" id="contact">
       <div className="flex justify-center">
         <h1 className="text-4xl font-bold">Contact</h1>
       </div>
       <div className="max-w-4xl mx-auto py-8 sm:flex sm:flex-row sm:justify-center">
-        <div className="sm:w-1/2 sm:pr-4">
-          <img
-            src="/contact-graphic.png"
-            alt="Contact Graphic"
-            className="w-full"
-          />
-        </div>
+        <div className="sm:w-1/2 sm:pr-4"></div>
         <div className="sm:w-1/2 sm:pl-4">
           <form
-            className="flex flex-col space-y-4"
+            className="flex flex-col font-acumin space-y-4"
             method="POST"
             onSubmit={handleSubmit}
           >
@@ -120,7 +115,7 @@ const Contact = () => {
               <Spinner />
             ) : (
               <button
-                className="border-2 border-blue text-white hover:bg-blue rounded-lg p-2"
+                className="border-2 border-blue font-nasalization text-white hover:bg-blue rounded-lg p-2"
                 disabled={!isFormValid}
                 type="submit"
               >

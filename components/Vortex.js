@@ -6,11 +6,11 @@ const GeometricSketch = dynamic(() => import("./GeometricSketch"), {
 
 const Vortex = () => {
   return (
-    <div className="relative bg-black-500 p-20 min-h-screen">
-      <div className="grid grid-cols-2 grid-rows-2 gap-6">
+    <div className="relative bg-black-500 p-6 md:p-20 min-h-screen flex items-center justify-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 grid-rows-2 w-full max-w-7xl gap-6">
         {/* First quadrant */}
-        <div className="col-span-2 md:col-span-1 md:row-span-1">
-          <h2 className="text-white text-3xl">
+        <div className="col-start-1 row-start-1">
+          <h2 className="text-white text-2xl md:text-3xl">
             <span className="text-blue">Skills</span> and Tools
           </h2>
           <p className="pt-2 text-white tracking-wide font-acumin">
@@ -20,33 +20,35 @@ const Vortex = () => {
         </div>
 
         {/* Second quadrant */}
-        <div className="col-span-1 md:col-span-1 md:row-span-2">
-          <div className="h-full flex items-center justify-center">
+        <div className="col-start-1 md:col-start-2 row-start-2 md:row-start-1 bg-black-500 p-6">
+          <div className="h-full flex items-center justify-center mt-12 md:mt-0">
             <GeometricSketch />
           </div>
         </div>
 
         {/* Third quadrant */}
-        <div className="col-span-1 md:col-span-1 md:row-span-2">
+        <div className="col-start-1 md:col-start-1 row-start-3 md:row-start-2 bg-black-500 p-6">
           <div className="h-full flex items-center justify-center">
             <GeometricSketch />
           </div>
         </div>
 
         {/* Fourth quadrant */}
-        <div className="col-span-2 md:col-span-1 md:row-span-1">
-          <div className="relative">
-            <div className="absolute text-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <div className="flex flex-wrap justify-center items-center">
-                <span className="text-2xl opacity-70 mb-6">TailwindCSS</span>
-                <span className="text-3xl opacity-80 mr-6">Adobe Xd</span>
-                <span className="text-4xl opacity-90 mb-6">JavaScript</span>
-                <span className="text-5xl opacity-100">Nextjs</span>
-                <span className="text-4xl opacity-90 mt-6">git</span>
-                <span className="text-3xl opacity-80 ml-6">React</span>
-                <span className="text-2xl opacity-70 mt-6">MongoDB</span>
-              </div>
-            </div>
+        <div className="col-start-1 row-start-4 md:col-start-2 md:row-start-2">
+          <div className="text-white flex flex-wrap justify-center items-center">
+            <span className="text-xl md:text-2xl opacity-70 mb-6">
+              TailwindCSS
+            </span>
+            <span className="text-2xl md:text-3xl opacity-80 mr-6">
+              Adobe Xd
+            </span>
+            <span className="text-3xl md:text-4xl opacity-90 mb-6">
+              JavaScript
+            </span>
+            <span className="text-4xl md:text-5xl opacity-100">Nextjs</span>
+            <span className="text-3xl md:text-4xl opacity-90 mt-6">git</span>
+            <span className="text-2xl md:text-3xl opacity-80 ml-6">React</span>
+            <span className="text-xl md:text-2xl opacity-70 mt-6">MongoDB</span>
           </div>
         </div>
       </div>

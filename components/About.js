@@ -1,26 +1,20 @@
 import Image from "next/image";
 import SocialLink from "./SocialLinks";
-// About section  with  one column and
-//two rows in mobile view and two columns
-//and  one row in desktop view
-
-// Path: components/About.js
 
 const About = () => {
   return (
-    <section className="bg-black-500 py-12" id="About">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          <div className="flex items-center justify-center">
-            <Image
-              src="/assets/rafael.jpg"
-              alt="Rafael"
-              width={400}
-              height={400}
-              className="rounded-md"
-            />
-          </div>
-
+    <section className="h-screen md:h-auto" id="about">
+      <div className="flex flex-col md:flex-row h-full">
+        <div className="bg-black-500 w-full h-1/2 md:h-full md:w-1/2 flex items-center justify-center">
+          <Image
+            src="/assets/rafael.jpg"
+            alt="Rafael"
+            width={400}
+            height={400}
+            className="rounded-md z-10"
+          />
+        </div>
+        <div className="bg-white w-full h-1/2 md:h-full md:w-1/2 p-6 flex flex-col justify-between">
           <div>
             <h2 className="text-2xl font-bold mb-4">About</h2>
             <p className="mb-4 font-acumin">
@@ -38,7 +32,7 @@ const About = () => {
               Lorem Ipsum.
             </p>
           </div>
-          <div className="flex justify-center text-white space-x-3">
+          <div className="flex text-black-500 space-x-3">
             <SocialLink url="https://github.com/username" type="github" />
             <SocialLink
               url="https://www.linkedin.com/in/username"

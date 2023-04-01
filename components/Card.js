@@ -61,15 +61,14 @@ const Card = ({ image, title, description, stack = [] }) => {
         variants={imageVariants}
       />
 
-      <motion.div className="p-2" variants={textVariants}>
+      <motion.div
+        className="absolute inset-0 p-2 flex flex-col justify-end"
+        variants={textVariants}
+      >
         <h3 className="text-xl font-semibold">{title}</h3>
         <p className="text-gray-600">{description}</p>
-        <motion.div
-          variants={stackVariants}
-          className="absolute bottom-0 left-0 right-0 pb-2 pt-4 text-black"
-        >
+        <motion.div variants={stackVariants} className="text-black">
           {/*when card is hovered show react-icons */}
-
           <div className="flex justify-center items-center space-x-2">
             {stack}
           </div>

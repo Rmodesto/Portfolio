@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import ButtonOutline from "./ButtonOutline";
@@ -11,21 +12,37 @@ const Hero = () => {
         <Sketch />
       </div>
       <div className="hero__content relative z-10 p-4">
-        <h1 className="hero__title text-5xl tracking-wider text-white">
+        <motion.h1
+          className="hero__title text-5xl tracking-wider text-white"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
           Hello, I'm <span className="text-blue">Rafael</span>
-        </h1>
-        <p className="hero__subtitle text-white font-acumin tracking-wide text-2xl pt-3">
+        </motion.h1>
+        <motion.p
+          className="hero__subtitle text-white font-acumin tracking-wide text-2xl pt-3"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.3 }}
+        >
           I'm a Web Developer based in NYC
-        </p>
-        <p className="text-sm text-white font-acumin tracking-widest font-thin pt-3">
-          {" "}
+        </motion.p>
+        <motion.p
+          className="text-sm text-white font-acumin tracking-widest font-thin pt-3"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.6 }}
+        >
           I'm passionate about building{" "}
           <span className="text-blue"> interactive</span> web applications.
-        </p>
+        </motion.p>
         <div className="pt-5">
-          <Link href="#projects" id="projects">
-            <ButtonOutline text="View my work" className="pt-3" />
-          </Link>
+          <motion.div whileHover={{ scale: 1.1 }} className="pt-3">
+            <Link href="/projects">
+              <ButtonOutline text="View my work" />
+            </Link>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import ArrowBack from "./ArrowBack";
 import ArrowNext from "./ArrowNext";
 import Card from "./Card";
+import ScrollAnimationWrapper from "./layouts/ScrollAnimationWrapper";
 
 const getIcon = (stack) => {
   switch (stack) {
@@ -128,7 +129,7 @@ const Project = ({
   }
 
   return (
-    <section className="bg-black-500 py-24" id="projects">
+    <section className="bg-black-500  pt-0.5 py-24" id="projects">
       <div className="container mx-auto px-5 lg:px-32 ">
         <div className="flex flex-wrap -mx-2 md:-mx-4">
           {listProject.map((project, index) => {
@@ -138,15 +139,19 @@ const Project = ({
                   key={project.id}
                   className="w-full md:w-1/3 px-2 md:px-4 mb-4 md:mb-8"
                 >
-                  <div className="h-full">
-                    <Card
-                      key={project.id}
-                      image={project.image}
-                      title={project.title}
-                      description={project.description}
-                      stack={project.stack.map((stack) => getIcon(stack)) || []}
-                    />
-                  </div>
+                  <ScrollAnimationWrapper>
+                    <div className="h-full">
+                      <Card
+                        key={project.id}
+                        image={project.image}
+                        title={project.title}
+                        description={project.description}
+                        stack={
+                          project.stack.map((stack) => getIcon(stack)) || []
+                        }
+                      />
+                    </div>
+                  </ScrollAnimationWrapper>
                 </div>
               );
             }

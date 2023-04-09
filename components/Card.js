@@ -62,7 +62,7 @@ const Card = ({ image, title, description, stack = [] }) => {
       />
 
       <motion.div
-        className="absolute inset-0 p-2 flex flex-col justify-end"
+        className="absolute inset-0 p-2 flex flex-col justify-start"
         variants={textVariants}
       >
         <h3 className="text-xl font-semibold">{title}</h3>

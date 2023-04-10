@@ -6,6 +6,7 @@ import Contact from "../../components/ContactForm";
 import Hero from "../../components/Hero";
 import Layout from "../../components/Layouts/Layout";
 import Projects from "../../components/Projects";
+import Spacer from "../../components/Spacer";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -23,6 +24,11 @@ export default function Home() {
         <Hero />
         <Vortex />
         <Projects />
+        <Spacer
+          height={72}
+          gradient="linear-gradient(to right, #3b82f6, #3ac7ac, #22c55e)"
+        />
+
         <About />
         <Contact />
       </Layout>

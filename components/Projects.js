@@ -1,11 +1,29 @@
+import { motion, useAnimation } from "framer-motion";
 import { useEffect, useState } from "react";
 import { FaReact } from "react-icons/fa";
 import { SiTailwindcss } from "react-icons/si";
+import { useInView } from "react-intersection-observer";
 import Slider from "react-slick";
 import ArrowBack from "./ArrowBack";
 import ArrowNext from "./ArrowNext";
 import Card from "./Card";
-import ScrollAnimationWrapper from "./layouts/ScrollAnimationWrapper";
+
+const useScrollAnimation = (delay) => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({ threshold: 0.1 });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start({
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.4, delay },
+      });
+    }
+  }, [controls, inView, delay]);
+
+  return [ref, controls];
+};
 
 const getIcon = (stack) => {
   switch (stack) {
@@ -66,6 +84,10 @@ const Project = ({
     // Your project data here
   ],
 }) => {
+  const animationDelays = Array(listProject.length)
+    .fill()
+    .map((_, i) => i * 0.15);
+
   const [isMobile, setIsMobile] = useState(false);
   const [sliderRef, setSliderRef] = useState(null);
 
@@ -128,33 +150,41 @@ const Project = ({
     );
   }
 
+  const firstSixProjects = listProject.slice(0, 6);
+
   return (
     <section className="bg-black-500  pt-0.5 py-24" id="projects">
       <div className="container mx-auto px-5 lg:px-32 ">
         <div className="flex flex-wrap -mx-2 md:-mx-4">
-          {listProject.map((project, index) => {
-            if (index < 6) {
-              return (
-                <div
-                  key={project.id}
-                  className="w-full md:w-1/3 px-2 md:px-4 mb-4 md:mb-8"
+          {firstSixProjects.map((project, index) => {
+            const [ref, controls] = useScrollAnimation(animationDelays[index]);
+            const fadeInUp = {
+              hidden: { opacity: 0, y: 60 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+            };
+
+            return (
+              <div
+                key={project.id}
+                className="w-full md:w-1/3 px-2 md:px-4 mb-4 md:mb-8"
+              >
+                <motion.div
+                  ref={ref}
+                  className="h-full"
+                  initial="hidden"
+                  animate={controls}
+                  variants={fadeInUp}
                 >
-                  <ScrollAnimationWrapper>
-                    <div className="h-full">
-                      <Card
-                        key={project.id}
-                        image={project.image}
-                        title={project.title}
-                        description={project.description}
-                        stack={
-                          project.stack.map((stack) => getIcon(stack)) || []
-                        }
-                      />
-                    </div>
-                  </ScrollAnimationWrapper>
-                </div>
-              );
-            }
+                  <Card
+                    key={project.id}
+                    image={project.image}
+                    title={project.title}
+                    description={project.description}
+                    stack={project.stack.map((stack) => getIcon(stack)) || []}
+                  />
+                </motion.div>
+              </div>
+            );
           })}
         </div>
       </div>

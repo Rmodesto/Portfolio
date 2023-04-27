@@ -1,5 +1,8 @@
+import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { useState } from "react";
+import { useInView } from "react-intersection-observer";
+
 import { sendContactForm } from "../lib/api";
 import ScrollAnimationWrapper from "./layouts/ScrollAnimationWrapper";
 import Spinner from "./Spinner";
@@ -12,7 +15,29 @@ const initValues = { name: "", email: "", subject: "", message: "" };
 
 const initState = { values: initValues };
 
+//Framer Motion Variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      when: "beforeChildren",
+      staggerChildren: 0.3,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 },
+};
+
 const Contact = () => {
+  // Create a reference with the useInView hook
+  const [ref, inView] = useInView({
+    threshold: 0.1, // Adjust this value to control when the animation starts
+  });
+
   const [state, setState] = useState(initState);
   const { values } = state;
   const [loading, setLoading] = useState(false);
@@ -57,23 +82,35 @@ const Contact = () => {
   };
 
   return (
-    <div className="bg-black-500 py-24 px-8" id="contact">
+    <motion.div
+      className="bg-black-500 py-24 px-8"
+      ref={ref}
+      id="contact"
+      variants={containerVariants}
+      initial="hidden"
+      animate={inView ? "show" : "hidden"}
+    >
       <div className="flex justify-center">
         <ScrollAnimationWrapper>
-          <h1 className="text-4xl text-white font-bold">Contact</h1>
+          <motion.h1 className="text-4xl text-white font-bold">
+            Contact
+          </motion.h1>
         </ScrollAnimationWrapper>
       </div>
       <div className="max-w-4xl mx-auto py-8 sm:flex sm:flex-row sm:justify-center">
-        <div className="sm:w-1/2 sm:pr-4 relative">
+        <motion.div
+          className="sm:w-1/2 sm:pr-4 relative"
+          variants={itemVariants}
+        >
           <RocketSketch rocketAnimation={rocketAnimation} />
           {showMessage && (
             <p className="text-white text-center absolute bottom-0 left-1/2 transform -translate-x-1/2">
               Sent! We'll be in touch.
             </p>
           )}
-        </div>
+        </motion.div>
 
-        <div className="sm:w-1/2 sm:pl-4">
+        <motion.div className="sm:w-1/2 sm:pl-4">
           <ScrollAnimationWrapper>
             <form
               className="flex flex-col space-y-4"
@@ -149,9 +186,9 @@ const Contact = () => {
               )}
             </form>
           </ScrollAnimationWrapper>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

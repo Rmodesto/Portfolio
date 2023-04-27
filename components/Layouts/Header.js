@@ -1,8 +1,8 @@
-import { useRouter } from "next/router";
-
+import { motion } from "framer-motion";
+import Link from "next/link";
 import { useState } from "react";
 import Logo from "../../components/Logo";
-import ActiveLink from "./ActiveLink";
+import useActiveSection from "./useActiveSection";
 
 const navigation = [
   { name: "Projects", id: "projects" },
@@ -12,14 +12,18 @@ const navigation = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const router = useRouter();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  const activeSection = useActiveSection(navigation.map((item) => item.id));
+
   return (
-    <nav className="fixed top-0 w-full flex items-center md:px-24 justify-between flex-wrap bg-black-500 p-6 z-10">
+    <nav
+      className="fixed top-0 w-full flex items-center md:px-24 justify-between flex-wrap bg-black-500 p-6 z-10"
+      onClick={() => setIsOpen(false)}
+    >
       <Logo />
       <div className="flex md:hidden" onClick={toggleMenu}>
         {/* ... */}
@@ -34,14 +38,17 @@ const Navbar = () => {
             key={item.name}
             className="block mt-4 md:inline-block text-white text-xl tracking-widest cursor-pointer selection:tracking-widest md:mt-0 md:ml-6"
           >
-            <ActiveLink
-              href={`#${item.id}`}
-              activeClassName="border-b-2 border-green-500"
-              scroll
-              onClick={() => setIsOpen(false)}
-            >
-              <span>{item.name}</span>
-            </ActiveLink>
+            <Link href={`#${item.id}`}>
+              <motion.button
+                className={`relative cursor-pointer hover:border-b-2 hover:border-green-500 ${
+                  activeSection === item.id ? "border-b-2 border-green-500" : ""
+                }`}
+                whileHover={{ scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                {item.name}
+              </motion.button>
+            </Link>
           </div>
         ))}
       </div>

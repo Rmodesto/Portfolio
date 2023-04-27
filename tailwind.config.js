@@ -9,9 +9,25 @@ module.exports = {
 
   theme: {
     extend: {
-      backgroundImage: {
-        "custom-gradient":
-          "linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 1))",
+      height: {
+        spacer: "6rem", // Custom height class for Spacer component
+      },
+
+      backgroundImage: (theme) => ({
+        "gradient-spacer-ttb":
+          "linear-gradient(to bottom, #252C38 2%, #f5f5f5 50%, #ffffff 100%)",
+        "gradient-spacer-btt":
+          "linear-gradient(to top,#252C38 2%, #f5f5f5 50%, #ffffff 100%)",
+      }),
+
+      animation: {
+        "gradient-move": "gradientMove 4s ease-in-out infinite",
+      },
+      keyframes: {
+        gradientMove: {
+          "0%, 100%": { "background-position": "0% 50%" },
+          "50%": { "background-position": "100% 50%" },
+        },
       },
     },
 

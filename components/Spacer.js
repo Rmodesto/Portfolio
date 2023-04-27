@@ -1,9 +1,7 @@
-const Spacer = ({ height, gradient }) => {
-  const spacerStyle = {
-    height: `${height * 0.25}rem`,
-    background: gradient,
-  };
-  return <div style={spacerStyle}></div>;
+const Spacer = () => {
+  const spacerClasses =
+    "h-spacer w-full bg-gradient-custom bg-100 animate-gradientAnimation";
+  return <div className={spacerClasses}></div>;
 };
 
 export default Spacer;

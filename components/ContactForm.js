@@ -2,9 +2,10 @@ import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import { useInView } from "react-intersection-observer";
+import { fadeInUp } from "../utils/motion";
 
 import { sendContactForm } from "../lib/api";
-import ScrollAnimationWrapper from "./layouts/ScrollAnimationWrapper";
+
 import Spinner from "./Spinner";
 
 const RocketSketch = dynamic(() => import("./RocketSketch"), {
@@ -16,21 +17,6 @@ const initValues = { name: "", email: "", subject: "", message: "" };
 const initState = { values: initValues };
 
 //Framer Motion Variants
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      when: "beforeChildren",
-      staggerChildren: 0.3,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 },
-};
 
 const Contact = () => {
   // Create a reference with the useInView hook
@@ -86,22 +72,15 @@ const Contact = () => {
       className="bg-black-500 py-24 px-8"
       ref={ref}
       id="contact"
-      variants={containerVariants}
+      variants={fadeInUp}
       initial="hidden"
-      animate={inView ? "show" : "hidden"}
+      animate={inView ? "visible" : "hidden"}
     >
       <div className="flex justify-center">
-        <ScrollAnimationWrapper>
-          <motion.h1 className="text-4xl text-white font-bold">
-            Contact
-          </motion.h1>
-        </ScrollAnimationWrapper>
+        <motion.h1 className="text-4xl text-white font-bold">Contact</motion.h1>
       </div>
       <div className="max-w-4xl mx-auto py-8 sm:flex sm:flex-row sm:justify-center">
-        <motion.div
-          className="sm:w-1/2 sm:pr-4 relative"
-          variants={itemVariants}
-        >
+        <motion.div className="sm:w-1/2 sm:pr-4 relative" variants={fadeInUp}>
           <RocketSketch rocketAnimation={rocketAnimation} />
           {showMessage && (
             <p className="text-white text-center absolute bottom-0 left-1/2 transform -translate-x-1/2">
@@ -111,81 +90,79 @@ const Contact = () => {
         </motion.div>
 
         <motion.div className="sm:w-1/2 sm:pl-4">
-          <ScrollAnimationWrapper>
-            <form
-              className="flex flex-col space-y-4"
-              method="POST"
-              onSubmit={handleSubmit}
-            >
-              <input
-                type="email"
-                name="email"
-                value={values.email}
-                onChange={handleChange}
-                onBlur={(e) => {
-                  if (!e.target.value) {
-                    e.target.classList.add("border-red-500");
-                  } else {
-                    e.target.classList.remove("border-red-500");
-                  }
-                }}
-                id="email"
-                placeholder="Email"
-                className="border-2 font-acumin border-gray-500 rounded-lg p-2"
-              />
-              <input
-                type="text"
-                name="name"
-                value={values.name}
-                onChange={handleChange}
-                onBlur={(e) => {
-                  if (!e.target.value) {
-                    e.target.classList.add("border-red-500");
-                  } else {
-                    e.target.classList.remove("border-red-500");
-                  }
-                }}
-                id="name"
-                placeholder="Name"
-                className="border-2 font-acumin border-gray-500 rounded-lg p-2"
-              />
-              <input
-                type="text"
-                name="subject"
-                value={values.subject}
-                onChange={handleChange}
-                onBlur={(e) => {
-                  if (!e.target.value) {
-                    e.target.classList.add("border-red-500");
-                  } else {
-                    e.target.classList.remove("border-red-500");
-                  }
-                }}
-                id="subject"
-                placeholder="Subject"
-                className="border-2 font-acumin border-gray-500 rounded-lg p-2"
-              />
+          <form
+            className="flex flex-col space-y-4"
+            method="POST"
+            onSubmit={handleSubmit}
+          >
+            <input
+              type="email"
+              name="email"
+              value={values.email}
+              onChange={handleChange}
+              onBlur={(e) => {
+                if (!e.target.value) {
+                  e.target.classList.add("border-red-500");
+                } else {
+                  e.target.classList.remove("border-red-500");
+                }
+              }}
+              id="email"
+              placeholder="Email"
+              className="border-2 font-acumin font-thin border-gray-500 rounded-lg p-2"
+            />
+            <input
+              type="text"
+              name="name"
+              value={values.name}
+              onChange={handleChange}
+              onBlur={(e) => {
+                if (!e.target.value) {
+                  e.target.classList.add("border-red-500");
+                } else {
+                  e.target.classList.remove("border-red-500");
+                }
+              }}
+              id="name"
+              placeholder="Name"
+              className="border-2 font-acumin border-gray-500 rounded-lg p-2"
+            />
+            <input
+              type="text"
+              name="subject"
+              value={values.subject}
+              onChange={handleChange}
+              onBlur={(e) => {
+                if (!e.target.value) {
+                  e.target.classList.add("border-red-500");
+                } else {
+                  e.target.classList.remove("border-red-500");
+                }
+              }}
+              id="subject"
+              placeholder="Subject"
+              className="border-2 font-acumin border-gray-500 rounded-lg p-2"
+            />
 
-              <textarea
-                name="message"
-                value={values.message}
-                onChange={handleChange}
-                placeholder="Message"
-                className="border-2 font-acumin border-gray-500 rounded-lg p-2"
-              />
-              {loading ? (
-                <Spinner />
-              ) : (
-                <button
-                  className="border-2 border-blue text-white hover:bg-blue rounded-lg p-2"
-                  disabled={!isFormValid}
-                  type="submit"
-                >
-                  Submit
-                </button>
-              )}
-            </form>
-          </ScrollAnimationWrapper>
+            <textarea
+              name="message"
+              value={values.message}
+              onChange={handleChange}
+              placeholder="Message"
+              className="border-2 font-acumin border-gray-500 rounded-lg p-2"
+            />
+            {loading ? (
+              <Spinner />
+            ) : (
+              <button
+                className="border-2 border-blue text-white hover:bg-blue rounded-lg p-2"
+                disabled={!isFormValid}
+                type="submit"
+              >
+                Submit
+              </button>
+            )}
+          </form>
         </motion.div>
       </div>
     </motion.div>

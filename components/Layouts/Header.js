@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
 import Logo from "../../components/Logo";
+import { navVariants } from "../../utils/motion";
 import useActiveSection from "./useActiveSection";
 
 const navigation = [
@@ -20,10 +21,14 @@ const Navbar = () => {
   const activeSection = useActiveSection(navigation.map((item) => item.id));
 
   return (
-    <nav
+    <motion.nav
+      variants={navVariants}
+      initial="hidden"
+      animate="show"
       className="fixed top-0 w-full flex items-center md:px-24 justify-between flex-wrap bg-black-500 p-6 z-10"
       onClick={() => setIsOpen(false)}
     >
+      <div className="absolute inset-0 gradient-01" />
       <Logo />
       <div className="flex md:hidden" onClick={toggleMenu}>
         {/* ... */}
@@ -52,7 +57,7 @@ const Navbar = () => {
           </div>
         ))}
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 

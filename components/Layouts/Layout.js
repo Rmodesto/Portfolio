@@ -2,10 +2,9 @@ import "slick-carousel/slick/slick.css";
 import Footer from "./Footer";
 import Header from "./Header";
 
-
 const Layout = ({ children }) => {
   return (
-    <div className="">
+    <div>
       <Header />
       {children}
       <Footer />

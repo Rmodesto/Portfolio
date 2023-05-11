@@ -1,29 +1,14 @@
-import { motion, useAnimation } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { FaReact } from "react-icons/fa";
 import { SiTailwindcss } from "react-icons/si";
 import { useInView } from "react-intersection-observer";
 import Slider from "react-slick";
+import { slideIn, staggerContainer } from "../utils/motion";
 import ArrowBack from "./ArrowBack";
 import ArrowNext from "./ArrowNext";
 import Card from "./Card";
-
-const useScrollAnimation = (delay) => {
-  const controls = useAnimation();
-  const [ref, inView] = useInView({ threshold: 0.1 });
-
-  useEffect(() => {
-    if (inView) {
-      controls.start({
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.4, delay },
-      });
-    }
-  }, [controls, inView, delay]);
-
-  return [ref, controls];
-};
+import useOnScreen from "./hooks/useOnScreen";
 
 const getIcon = (stack) => {
   switch (stack) {
@@ -34,6 +19,19 @@ const getIcon = (stack) => {
       return <SiTailwindcss key={stack} />;
     default:
       return null;
+  }
+};
+
+const slideInDirection = (index) => {
+  switch (index % 4) {
+    case 0:
+      return "up";
+    case 1:
+      return "right";
+    case 2:
+      return "down";
+    default:
+      return "left";
   }
 };
 
@@ -81,9 +79,11 @@ const Project = ({
       stack: ["react", "nextjs", "tailwind"],
       description: "lorem ipsumsd as dff asqqq weer",
     },
-    // Your project data here
   ],
 }) => {
+  const cardRef = useRef();
+  const isVisible = useOnScreen({ threshold: 0.1, ref: cardRef });
+
   const animationDelays = Array(listProject.length)
     .fill()
     .map((_, i) => i * 0.15);
@@ -154,15 +154,23 @@ const Project = ({
 
   return (
     <section className="bg-black-500  pt-0.5 py-24" id="projects">
-      <div className="container mx-auto px-5 lg:px-32 ">
+      <motion.div
+        variants={staggerContainer(0.2, 0.1)} // Use staggerContainer function
+        initial="hidden"
+        animate="show"
+        className="container mx-auto px-5 lg:px-32 "
+      >
         <div className="flex flex-wrap -mx-2 md:-mx-4">
           {firstSixProjects.map((project, index) => {
-            const [ref, controls] = useScrollAnimation(animationDelays[index]);
-            const fadeInUp = {
-              hidden: { opacity: 0, y: 60 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-            };
+            const [ref, controls] = useInView(animationDelays[index]);
 
+            // Use slideIn function with different directions based on index
+            const slideInVariant = slideIn(
+              slideInDirection(index),
+              "tween",
+              0.2 + index * 0.1,
+              0.5
+            );
             return (
               <div
                 key={project.id}
@@ -173,9 +181,13 @@ const Project = ({
                   className="h-full"
                   initial="hidden"
                   animate={controls}
-                  variants={fadeInUp}
+                  variants={{
+                    ...slideInVariant.hidden,
+                    ...slideInVariant.show,
+                  }}
                 >
                   <Card
+                    ref={cardRef}
                     key={project.id}
                     image={project.image}
                     title={project.title}
@@ -187,7 +199,7 @@ const Project = ({
             );
           })}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

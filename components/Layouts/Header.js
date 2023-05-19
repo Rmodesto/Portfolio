@@ -41,7 +41,7 @@ const Navbar = () => {
         {navigation.map((item) => (
           <div
             key={item.name}
-            className="block mt-4 md:inline-block text-white text-xl tracking-widest cursor-pointer selection:tracking-widest md:mt-0 md:ml-6"
+            className="block mt-4 md:inline-block text-white text-2xl tracking-widest cursor-pointer selection:tracking-widest md:mt-0 md:ml-6"
           >
             <Link href={`#${item.id}`}>
               <motion.button

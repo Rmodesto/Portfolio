@@ -1,14 +1,14 @@
+//Projects.js
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { FaReact } from "react-icons/fa";
 import { SiTailwindcss } from "react-icons/si";
-import { useInView } from "react-intersection-observer";
 import Slider from "react-slick";
-import { slideIn, staggerContainer } from "../utils/motion";
+import { slideInVariant, staggerContainer } from "../utils/motion";
 import ArrowBack from "./ArrowBack";
 import ArrowNext from "./ArrowNext";
 import Card from "./Card";
-import useOnScreen from "./hooks/useOnScreen";
+import useOnScreenAnimation from "./hooks/useOnScreenAnimation";
 
 const getIcon = (stack) => {
   switch (stack) {
@@ -19,19 +19,6 @@ const getIcon = (stack) => {
       return <SiTailwindcss key={stack} />;
     default:
       return null;
-  }
-};
-
-const slideInDirection = (index) => {
-  switch (index % 4) {
-    case 0:
-      return "up";
-    case 1:
-      return "right";
-    case 2:
-      return "down";
-    default:
-      return "left";
   }
 };
 
@@ -81,12 +68,8 @@ const Project = ({
     },
   ],
 }) => {
-  const cardRef = useRef();
-  const isVisible = useOnScreen({ threshold: 0.1, ref: cardRef });
-
-  const animationDelays = Array(listProject.length)
-    .fill()
-    .map((_, i) => i * 0.15);
+  const cardRefs = listProject.map(() => useRef());
+  const isVisible = useOnScreenAnimation({ threshold: 0.3, refs: cardRefs });
 
   const [isMobile, setIsMobile] = useState(false);
   const [sliderRef, setSliderRef] = useState(null);
@@ -99,9 +82,6 @@ const Project = ({
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  const firstRow = listProject.slice(0, 3);
-  const secondRow = listProject.slice(3, 6);
 
   const sliderSettings = {
     dots: true,
@@ -153,41 +133,34 @@ const Project = ({
   const firstSixProjects = listProject.slice(0, 6);
 
   return (
-    <section className="bg-black-500  pt-0.5 py-24" id="projects">
+    <motion.section className="bg-black-500  pt-0.5 py-24" id="projects">
       <motion.div
-        variants={staggerContainer(0.2, 0.1)} // Use staggerContainer function
+        variants={staggerContainer} // Use staggerContainer function
         initial="hidden"
-        animate="show"
+        animate={isVisible ? "show" : "hidden"}
         className="container mx-auto px-5 lg:px-32 "
       >
         <div className="flex flex-wrap -mx-2 md:-mx-4">
           {firstSixProjects.map((project, index) => {
-            const [ref, controls] = useInView(animationDelays[index]);
+            const cardRef = cardRefs[index];
 
-            // Use slideIn function with different directions based on index
-            const slideInVariant = slideIn(
-              slideInDirection(index),
-              "tween",
-              0.2 + index * 0.1,
-              0.5
-            );
             return (
-              <div
+              <motion.div
                 key={project.id}
                 className="w-full md:w-1/3 px-2 md:px-4 mb-4 md:mb-8"
+                ref={cardRef} // Use the individual ref here
+                initial="hidden"
+                animate={isVisible[index] ? "show" : "hidden"} // Use the individual visibility state here
+                variants={slideInVariant}
               >
                 <motion.div
-                  ref={ref}
+                  ref={cardRef} // Use the individual ref here
                   className="h-full"
                   initial="hidden"
-                  animate={controls}
-                  variants={{
-                    ...slideInVariant.hidden,
-                    ...slideInVariant.show,
-                  }}
+                  animate={isVisible[index] ? "show" : "hidden"} // Use the individual visibility state here
+                  variants={slideInVariant}
                 >
                   <Card
-                    ref={cardRef}
                     key={project.id}
                     image={project.image}
                     title={project.title}
@@ -195,12 +168,12 @@ const Project = ({
                     stack={project.stack.map((stack) => getIcon(stack)) || []}
                   />
                 </motion.div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
       </motion.div>
-    </section>
+    </motion.section>
   );
 };
 

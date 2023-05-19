@@ -35,7 +35,7 @@ const Vortex = () => {
           ref={ref1}
           className="col-start-1 row-start-1"
         >
-          <h2 className="text-white text-2xl md:text-3xl">
+          <h2 className="text-white text-xl md:text-5xl">
             <span className="text-blue">Skills</span> and Tools
           </h2>
           <p className="pt-2 text-white tracking-wide font-acumin">

@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { fadeInUp } from "../utils/motion";
+import { fadeIn, fadeInUp } from "../utils/motion";
 
 import { sendContactForm } from "../lib/api";
 
@@ -77,7 +77,7 @@ const Contact = () => {
       animate={inView ? "visible" : "hidden"}
     >
       <div className="flex justify-center">
-        <motion.h1 className="text-4xl text-white font-bold">Contact</motion.h1>
+        <motion.h1 className="text-4xl text-white font-bold">Clouds</motion.h1>
       </div>
       <div className="max-w-4xl mx-auto py-8 sm:flex sm:flex-row sm:justify-center">
         <motion.div className="sm:w-1/2 sm:pr-4 relative" variants={fadeInUp}>
@@ -95,7 +95,7 @@ const Contact = () => {
             method="POST"
             onSubmit={handleSubmit}
           >
-            <input
+            <motion.input
               type="email"
               name="email"
               value={values.email}
@@ -110,8 +110,11 @@ const Contact = () => {
               id="email"
               placeholder="Email"
               className="border-2 font-acumin font-thin border-gray-500 rounded-lg p-2"
+              variants={fadeIn("up", "tween", 0, 0.5)}
+              initial="hidden"
+              animate={inView ? "show" : "hidden"}
             />
-            <input
+            <motion.input
               type="text"
               name="name"
               value={values.name}
@@ -126,8 +129,11 @@ const Contact = () => {
               id="name"
               placeholder="Name"
               className="border-2 font-acumin border-gray-500 rounded-lg p-2"
+              variants={fadeIn("up", "tween", 0, 0.5)}
+              initial="hidden"
+              animate={inView ? "show" : "hidden"}
             />
-            <input
+            <motion.input
               type="text"
               name="subject"
               value={values.subject}
@@ -139,12 +145,18 @@ const Contact = () => {
                   e.target.classList.remove("border-red-500");
                 }
               }}
-              id="subject"
-              placeholder="Subject"
-              className="border-2 font-acumin border-gray-500 rounded-lg p-2"
+              id="email"
+              placeholder="Email"
+              className="border-2 font-acumin font-thin border-gray-500 rounded-lg p-2"
+              variants={fadeIn("up", "tween", 0, 0.5)}
+              initial="hidden"
+              animate={inView ? "show" : "hidden"}
             />
 
-            <textarea
+            <motion.textarea
+              variants={fadeIn("up", "tween", 0, 0.5)}
+              initial="hidden"
+              animate={inView ? "show" : "hidden"}
               name="message"
               value={values.message}
               onChange={handleChange}
@@ -154,13 +166,18 @@ const Contact = () => {
             {loading ? (
               <Spinner />
             ) : (
-              <button
+              <motion.button
                 className="border-2 border-blue text-white hover:bg-blue rounded-lg p-2"
                 disabled={!isFormValid}
                 type="submit"
+                variants={fadeIn("down", "tween", 0, 0.5)}
+                initial="hidden"
+                animate={inView ? "show" : "hidden"}
+                whileHover="hover"
+                whileTap="tap"
               >
                 Submit
-              </button>
+              </motion.button>
             )}
           </form>
         </motion.div>

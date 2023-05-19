@@ -1,3 +1,5 @@
+//motion.js
+
 export const navVariants = {
   hidden: {
     opacity: 0,
@@ -34,6 +36,11 @@ export const slideIn = (
     transition: { type, delay, duration },
   };
 
+  const reverse = {
+    opacity: 0,
+    transition: { type, delay, duration },
+  };
+
   if (direction === "up") {
     hidden.y = 50;
     show.y = 0;
@@ -51,10 +58,9 @@ export const slideIn = (
   return {
     hidden,
     show,
+    reverse,
   };
 };
-
-// motion.js
 
 export const staggerContainer = (
   delayChildren = 0.2,
@@ -74,7 +80,7 @@ export const staggerContainer = (
   };
 };
 
-export const textVariant = (delay) => ({
+export const textVariants = (delay, reverseDelay = 0) => ({
   hidden: {
     y: 50,
     opacity: 0,
@@ -86,6 +92,15 @@ export const textVariant = (delay) => ({
       type: "spring",
       duration: 1.25,
       delay,
+    },
+  },
+  reverse: {
+    y: -50,
+    opacity: 0,
+    transition: {
+      type: "spring",
+      duration: 1.25,
+      delay: reverseDelay,
     },
   },
 });
@@ -114,7 +129,6 @@ export const textVariant2 = {
     },
   },
 };
-
 export const fadeIn = (direction, type, delay, duration) => ({
   hidden: {
     x: direction === "left" ? 100 : direction === "right" ? -100 : 0,
@@ -130,6 +144,17 @@ export const fadeIn = (direction, type, delay, duration) => ({
       delay,
       duration,
       ease: "easeOut",
+    },
+  },
+  reverse: {
+    x: direction === "left" ? 100 : direction === "right" ? -100 : 0,
+    y: direction === "up" ? 100 : direction === "down" ? -100 : 0,
+    opacity: 0,
+    transition: {
+      type,
+      delay,
+      duration,
+      ease: "easeIn",
     },
   },
 });
@@ -166,7 +191,6 @@ export const zoomIn = (delay, duration) => ({
     },
   },
 });
-
 export const footerVariants = {
   hidden: {
     opacity: 0,
@@ -209,18 +233,9 @@ export const imageVariants = {
     transition: { duration: 0.3, ease: "easeInOut" },
   },
 };
-
-export const textVariants = {
-  hover: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.3, ease: "easeInOut" },
-  },
-  initial: {
-    opacity: 0,
-    y: 50,
-    transition: { duration: 0.3, ease: "easeInOut" },
-  },
+export const hoverVariants = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { duration: 0.5 } },
 };
 
 export const stackVariants = {
@@ -245,4 +260,12 @@ export const glassEffectVariants = {
     backgroundColor: "transparent",
     transition: { duration: 0.3, ease: "easeInOut" },
   },
+};
+
+export const buttonVariants = {
+  hover: { scale: 1.05, transition: { duration: 0.3, ease: "easeInOut" } },
+
+  initial: { scale: 1, transition: { duration: 0.3, ease: "easeInOut" } },
+
+  tap: { scale: 0.95, transition: { duration: 0.3, ease: "easeInOut" } },
 };

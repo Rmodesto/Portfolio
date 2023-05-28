@@ -32,6 +32,8 @@ const GeometricSketch = () => {
         p.pop();
       };
 
+      let animationProgress = 0;
+
       p.draw = () => {
         p.background(255, 255, 255, 0);
         p.strokeWeight(1);

@@ -2,11 +2,11 @@ import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { fadeIn, fadeInUp } from "../utils/motion";
+import { buttonVariants, fadeIn, fadeInUp } from "../utils/motion";
 
 import { sendContactForm } from "../lib/api";
 
-import Spinner from "./Spinner";
+import Spinner from "../components/Spinner";
 
 const RocketSketch = dynamic(() => import("./RocketSketch"), {
   ssr: false,
@@ -170,7 +170,7 @@ const Contact = () => {
                 className="border-2 border-blue text-white hover:bg-blue rounded-lg p-2"
                 disabled={!isFormValid}
                 type="submit"
-                variants={fadeIn("down", "tween", 0, 0.5)}
+                variants={buttonVariants}
                 initial="hidden"
                 animate={inView ? "show" : "hidden"}
                 whileHover="hover"

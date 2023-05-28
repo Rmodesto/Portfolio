@@ -1,13 +1,19 @@
+//About.js
 import { motion } from "framer-motion";
 import Image from "next/image";
-import useOnScreenAnimation from "../components/hooks/useOnScreenAnimation";
+import { useInView } from "react-intersection-observer";
 import { fadeIn, staggerContainer } from "../utils/motion";
 import SocialLink from "./SocialLinks";
 
 const About = () => {
-  const [ref1, animation] = useOnScreenAnimation({ threshold: 0.1 });
-  const [ref2, imageAnimation] = useOnScreenAnimation({ threshold: 0.1 });
+  const [ref1, inView1] = useInView({ threshold: 0.1 });
+  const [ref2, inView2] = useInView({ threshold: 0.1 });
   const staggered = staggerContainer();
+
+  // New useInView hooks for each paragraph
+  const [refPara1, inViewPara1] = useInView({ threshold: 0.1 });
+  const [refPara2, inViewPara2] = useInView({ threshold: 0.1 });
+  const [refPara3, inViewPara3] = useInView({ threshold: 0.1 });
 
   return (
     <section className="h-full py-24 md:h-auto" id="about">
@@ -17,7 +23,7 @@ const About = () => {
           ref={ref2}
           variants={fadeIn("up", "tween", 0, 0.5)}
           initial="hidden"
-          animate={imageAnimation}
+          animate={inView2 ? "show" : "hidden"}
         >
           <Image
             src="/assets/rafael.jpg"
@@ -33,14 +39,15 @@ const About = () => {
           ref={ref1}
           variants={staggered}
           initial="hidden"
-          animate={animation}
+          animate={inView1 ? "show" : "hidden"}
         >
           <motion.div variants={staggered}>
             <motion.p
               className="mb-4 font-acumin"
+              ref={refPara1}
               variants={fadeIn("down", "tween", 0, 0.5)}
               initial="hidden"
-              animate={animation}
+              animate={inViewPara1 ? "show" : "hidden"}
             >
               As a Junior Web Developer with a foundation in Business
               Administration and a Master's Degree in Information Systems Web
@@ -52,9 +59,10 @@ const About = () => {
             </motion.p>
             <motion.p
               className="mb-4 font-acumin"
+              ref={refPara2}
               variants={fadeIn("right", "tween", 0, 0.5)}
               initial="hidden"
-              animate={animation}
+              animate={inViewPara2 ? "show" : "hidden"}
             >
               When it comes to my personal life, my passions extend beyond the
               realm of technology. I have a deep appreciation for art and music,
@@ -64,9 +72,10 @@ const About = () => {
             </motion.p>
             <motion.p
               className="mb-4 font-acumin"
+              ref={refPara3}
               variants={fadeIn("up", "tween", 0, 0.5)}
               initial="hidden"
-              animate={animation}
+              animate={inViewPara3 ? "show" : "hidden"}
             >
               In the realm of web development, I am constantly looking for
               opportunities to learn, grow, and contribute to the digital

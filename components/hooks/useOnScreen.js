@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
-const useOnScreen = (options) => {
+const useOnScreenAnimation = (options) => {
   const [ref, inView] = useInView(options);
-  const [isVisible, setIsVisible] = useState(false);
+  const [animation, setAnimation] = useState("hidden");
 
   useEffect(() => {
     if (inView) {
-      setIsVisible(true);
+      setAnimation("show");
+    } else {
+      setAnimation("exit");
     }
   }, [inView]);
 
-  return [ref, isVisible];
+  return [ref, animation];
 };
 
-export default useOnScreen;
+export default useOnScreenAnimation;

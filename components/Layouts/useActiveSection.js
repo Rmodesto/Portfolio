@@ -22,6 +22,16 @@ const useActiveSection = (sectionIds) => {
       });
 
       setActiveSection(currentActiveSection);
+
+      // Check if we're in a browser environment
+      if (typeof window !== "undefined") {
+        // Update the URL without adding a history entry
+        if (currentActiveSection) {
+          window.history.replaceState(null, null, `#${currentActiveSection}`);
+        } else {
+          window.history.replaceState(null, null, " ");
+        }
+      }
     };
 
     window.addEventListener("scroll", onScroll);

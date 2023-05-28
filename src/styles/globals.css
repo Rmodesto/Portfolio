@@ -3,7 +3,7 @@
 
 @font-face {
   font-family: "nasalization";
-  src: url(/pages/nasa.otf);
+  src: url("/fonts/nasa.otf") format("opentype");
 }
 
 @tailwind base;

@@ -1,46 +1,52 @@
+//Hero.js
+
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { buttonVariants, fadeIn, slideIn } from "../utils/motion";
-
+import { useInView } from "react-intersection-observer";
+import { fadeIn, floatingVariants, slideIn } from "../utils/motion";
 import ButtonOutline from "./ButtonOutline";
-import useOnScreenAnimation from "./hooks/useOnScreenAnimation";
 
 const Sketch = dynamic(() => import("./Sketch"), { ssr: false });
 
 const Hero = () => {
-  const [ref, animation] = useOnScreenAnimation({ triggerOnce: false });
+  const [ref, inView] = useInView({
+    threshold: 0.2, // Set the desired threshold value
+    triggerOnce: true, // Set the desired triggerOnce value
+  });
+
+  // Logic for animation state based on inView value
 
   return (
     <section
       ref={ref}
-      className="hero relative bg-black-500 flex items-center justify-center min-h-screen bg-gray-900"
+      className="hero relative bg-black-500 flex items-center justify-center min-h-screen bg-gray-900 z-0"
     >
       <div className="sketch-wrapper absolute w-full h-full inset-0 overflow-hidden z-0">
         <Sketch />
       </div>
       <div className="hero__content relative z-10 p-4">
         <motion.h1
-          className="hero__title text-8xl tracking-wider text-white"
-          variants={fadeIn("up", "tween", 0, 0.5)}
+          className="hero__title md:text-8xl text-7xl tracking-wider text-white"
+          variants={{ ...fadeIn("up", "tween", 0, 0.5), ...floatingVariants }}
           initial="hidden"
-          animate={animation ? "show" : "reverse"}
+          animate={inView ? "show" : "exit"}
         >
           Hello, I'm <span className="text-blue">Rafael</span>
         </motion.h1>
         <motion.p
-          className="hero__subtitle text-white font-acumin tracking-wide text-5xl pt-3"
+          className="hero__subtitle md:text-5xl text-4xl text-white font-acumin tracking-wide pt-3"
           variants={slideIn("right", "tween", 0, 0.5)}
           initial="hidden"
-          animate={animation ? "show" : "reverse"}
+          animate={inView ? "show" : "exit"}
         >
           I'm a Web Developer based in NYC
         </motion.p>
         <motion.p
-          className="text-xl text-white font-acumin tracking-widest font-thin pt-3"
+          className="md:text-xl text-md text-white font-acumin tracking-widest font-thin pt-3"
           variants={slideIn("left", "tween", 0, 0.5)}
           initial="hidden"
-          animate={animation ? "show" : "reverse"}
+          animate={inView ? "show" : "exit"}
         >
           I'm passionate about building{" "}
           <span className="text-blue"> interactive</span> web applications.
@@ -49,13 +55,13 @@ const Hero = () => {
           <motion.div
             variants={fadeIn("up", "tween", 0.3, 0.5)}
             initial="hidden"
-            animate={animation ? "show" : "reverse"}
+            animate={inView ? "show" : "exit"}
             className="pt-3"
           >
-            <Link href="/projects">
+            <Link href="/#projects">
               <motion.div
-                variants={buttonVariants}
-                whileHover="hover"
+                variants={fadeIn("up", "tween", 0.3, 0.5)}
+                whileHover={{ scale: 1.1 }}
                 whileTap="tap"
                 initial="initial"
               >

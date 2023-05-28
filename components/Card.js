@@ -1,4 +1,4 @@
-//Card.js
+// Card.js
 import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { cardVariants, hoverVariants, imageVariants } from "../utils/motion";
@@ -28,14 +28,20 @@ const Card = React.forwardRef(
         />
 
         <motion.div
-          className="absolute inset-0 p-2 flex flex-col justify-center items-center text-center"
+          className={`absolute inset-0 transition-all duration-200 ${
+            isHovered ? "backdrop-blur-md bg-black bg-opacity-30" : ""
+          }`}
+        />
+
+        <motion.div
+          className="absolute inset-0 p-2 flex flex-col justify-center items-center text-center text-3xl"
           variants={hoverVariants}
           initial="hidden"
           animate={isHovered ? "show" : "hidden"} // use isHovered state to control animation
         >
-          <h3 className="text-xl font-semibold">{title}</h3>
-          <p className="text-gray-600">{description}</p>
-          <div className="flex justify-center items-center space-x-2">
+          <h3 className="font-semibold text-white">{title}</h3>
+          <p className="text-white font-acumin text-2xl">{description}</p>
+          <div className="flex justify-center items-center text-3xl space-x-2">
             {stack}
           </div>
         </motion.div>

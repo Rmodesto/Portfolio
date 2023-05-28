@@ -1,0 +1,89 @@
+portfolio
+├── .DS_Store
+├── .env.local
+├── .eslintrc.json
+├── .gitignore
+├── README.md
+├── components
+│   ├── .DS_Store
+│   ├── About.js
+│   ├── ArrowBack.js
+│   ├── ArrowNext.js
+│   ├── Background.js
+│   ├── ButtonOutline.js
+│   ├── Card.js
+│   ├── Constants.js
+│   ├── ContactForm.js
+│   ├── GeometricSketch.js
+│   ├── GradientSpacer.js
+│   ├── HamburgerMenu.js
+│   ├── Hero.js
+│   ├── HoverText.js
+│   ├── Layouts
+│   │   ├── Footer.js
+│   │   ├── Header.js
+│   │   ├── Layout.js
+│   │   └── useActiveSection.js
+│   ├── Logo.js
+│   ├── NextIcon.js
+│   ├── Projects.js
+│   ├── ReactIcon.js
+│   ├── RocketSketch.js
+│   ├── Sketch.js
+│   ├── SocialLinks.js
+│   ├── Spinner.js
+│   ├── TailwindIcon.js
+│   ├── Vortex.js
+│   ├── getIcons.js
+│   └── hooks
+│       ├── useOnScreen.js
+│       ├── useOnScreenAnimation.js
+│       └── useScroll.js
+├── config
+│   └── nodemailer.js
+├── jsconfig.json
+├── lib
+│   └── api.js
+├── next.config.js
+├── package-lock.json
+├── package.json
+├── postcss.config.js
+├── public
+│   ├── .DS_Store
+│   ├── assets
+│   │   ├── .DS_Store
+│   │   ├── auto.webp
+│   │   ├── black.webp
+│   │   ├── couch.png
+│   │   ├── down.webp
+│   │   ├── ecom.png
+│   │   ├── eva_arrow-back-fill.svg
+│   │   ├── eva_arrow-next-fill.svg
+│   │   ├── facebook.webp
+│   │   ├── hero.mp4
+│   │   ├── og.webp
+│   │   ├── porsh.webp
+│   │   ├── rafael.jpg
+│   │   ├── stars.mp4
+│   │   └── web1.webp
+│   ├── favicon.ico
+│   ├── next.svg
+│   ├── thirteen.svg
+│   └── vercel.svg
+├── src
+│   ├── .DS_Store
+│   ├── pages
+│   │   ├── Helvetica.ttc
+│   │   ├── _app.js
+│   │   ├── _document.js
+│   │   ├── api
+│   │   │   └── contact.js
+│   │   ├── index.js
+│   │   └── nasa.otf
+│   └── styles
+│       ├── .DS_Store
+│       ├── globals.css
+│       └── slick.css
+├── tailwind.config.js
+└── utils
+    └── motion.js

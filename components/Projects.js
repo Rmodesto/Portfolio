@@ -1,20 +1,19 @@
 //Projects.js
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { FaReact } from "react-icons/fa";
 import { SiTailwindcss } from "react-icons/si";
+import { useInView } from "react-intersection-observer";
 import Slider from "react-slick";
-import { slideInVariant, staggerContainer } from "../utils/motion";
+import { slideInFromLeft, slideInFromRight } from "../utils/motion";
 import ArrowBack from "./ArrowBack";
 import ArrowNext from "./ArrowNext";
 import Card from "./Card";
-import useOnScreenAnimation from "./hooks/useOnScreenAnimation";
 
 const getIcon = (stack) => {
   switch (stack) {
     case "react":
       return <FaReact key={stack} />;
-
     case "tailwind":
       return <SiTailwindcss key={stack} />;
     default:
@@ -22,8 +21,8 @@ const getIcon = (stack) => {
   }
 };
 
-const Project = ({
-  listProject = [
+const Project = () => {
+  const listProject = [
     {
       id: 1,
       title: "Ecommerce",
@@ -66,10 +65,15 @@ const Project = ({
       stack: ["react", "nextjs", "tailwind"],
       description: "lorem ipsumsd as dff asqqq weer",
     },
-  ],
-}) => {
+  ];
+
+  // Hooks for Intersection Observer
+  const [inViewRef, inView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
+
   const cardRefs = listProject.map(() => useRef());
-  const isVisible = useOnScreenAnimation({ threshold: 0.3, refs: cardRefs });
 
   const [isMobile, setIsMobile] = useState(false);
   const [sliderRef, setSliderRef] = useState(null);
@@ -89,6 +93,11 @@ const Project = ({
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    centerMode: true,
+    centerPadding: "10px",
+    swipeToSlide: true,
+    focusOnSelect: true,
+    adaptiveHeight: true,
   };
 
   if (isMobile) {
@@ -110,16 +119,16 @@ const Project = ({
           ))}
         </Slider>
         {/* Your slider controls */}
-        <div className="flex w-full bg-black-100 items-center justify-center">
+        <div className="flex w-full bg-black-500 items-center justify-center">
           <div className="flex flex-none justify-between w-auto mt-14">
             <div
-              className="mx-4 flex items-center justify-center h-14 w-14 rounded-full bg-white border-green-500 border hover:bg-green-500 hover:text-white-500 transition-all text-green-500 cursor-pointer"
+              className="mx-4 flex items-center justify-center h-14 w-14 rounded-full bg-black-500 border-white border hover:bg-white hover:text-black-500 transition-all text-white cursor-pointer"
               onClick={sliderRef?.slickPrev}
             >
               <ArrowBack className="h-6 w-6 " />
             </div>
             <div
-              className="flex items-center justify-center h-14 w-14 rounded-full bg-white border-green-500 border hover:bg-green-500 hover:text-white-500 transition-all text-green-500 cursor-pointer"
+              className="flex items-center justify-center h-14 w-14 rounded-full bg-black-500 border-white border hover:bg-white hover:text-black-500 transition-all text-white cursor-pointer"
               onClick={sliderRef?.slickNext}
             >
               <ArrowNext className="h-6 w-6" />
@@ -128,53 +137,40 @@ const Project = ({
         </div>
       </div>
     );
-  }
-
-  const firstSixProjects = listProject.slice(0, 6);
-
-  return (
-    <motion.section className="bg-black-500  pt-0.5 py-24" id="projects">
-      <motion.div
-        variants={staggerContainer} // Use staggerContainer function
+  } else {
+    return (
+      <motion.section
+        ref={inViewRef}
         initial="hidden"
-        animate={isVisible ? "show" : "hidden"}
-        className="container mx-auto px-5 lg:px-32 "
+        animate={inView ? "show" : "exit"}
+        exit="exit"
+        variants={slideInFromRight()}
+        className="bg-black-500  pt-0.5 py-24 grid grid-cols-1 md:grid-cols-3 gap-4 items-center justify-items-center px-4 md:px-8"
+        id="projects"
       >
-        <div className="flex flex-wrap -mx-2 md:-mx-4">
-          {firstSixProjects.map((project, index) => {
-            const cardRef = cardRefs[index];
-
-            return (
-              <motion.div
-                key={project.id}
-                className="w-full md:w-1/3 px-2 md:px-4 mb-4 md:mb-8"
-                ref={cardRef} // Use the individual ref here
-                initial="hidden"
-                animate={isVisible[index] ? "show" : "hidden"} // Use the individual visibility state here
-                variants={slideInVariant}
-              >
-                <motion.div
-                  ref={cardRef} // Use the individual ref here
-                  className="h-full"
-                  initial="hidden"
-                  animate={isVisible[index] ? "show" : "hidden"} // Use the individual visibility state here
-                  variants={slideInVariant}
-                >
-                  <Card
-                    key={project.id}
-                    image={project.image}
-                    title={project.title}
-                    description={project.description}
-                    stack={project.stack.map((stack) => getIcon(stack)) || []}
-                  />
-                </motion.div>
-              </motion.div>
-            );
-          })}
-        </div>
-      </motion.div>
-    </motion.section>
-  );
+        <AnimatePresence>
+          {listProject.map((project, index) => (
+            <motion.div
+              key={project.id}
+              className="w-full px-2 md:px-4 mb-4 md:mb-8"
+              initial="hidden"
+              animate={inView ? "show" : "exit"}
+              exit="exit"
+              variants={index < 3 ? slideInFromRight() : slideInFromLeft()}
+              ref={cardRefs[index]}
+            >
+              <Card
+                image={project.image}
+                title={project.title}
+                description={project.description}
+                stack={project.stack.map((stack) => getIcon(stack)) || []}
+              />
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </motion.section>
+    );
+  }
 };
 
 export default Project;

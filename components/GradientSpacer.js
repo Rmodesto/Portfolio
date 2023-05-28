@@ -3,7 +3,7 @@ const GradientSpacer = ({ direction = "ttb" }) => {
     direction === "ttb" ? "bg-gradient-spacer-ttb" : "bg-gradient-spacer-btt"
   }`;
 
-  return <div className={spacerClasses}></div>; 
+  return <div className={spacerClasses}></div>;
 };
 
 export default GradientSpacer;

@@ -1,9 +1,11 @@
-const GradientSpacer = ({ direction = "ttb" }) => {
-  const spacerClasses = `w-full h-48 animate-gradient-move ${
-    direction === "ttb" ? "bg-gradient-spacer-ttb" : "bg-gradient-spacer-btt"
-  }`;
+const GradientSpacer = () => {
+  const svgBackground = {
+    backgroundImage: `url(/assets/polygrids.svg)`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+  };
 
-  return <div className={spacerClasses}></div>;
+  return <div className="w-full h-48" style={svgBackground}></div>;
 };
 
 export default GradientSpacer;

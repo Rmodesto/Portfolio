@@ -2,7 +2,7 @@ import { Inter } from "@next/font/google";
 import Vortex from "components/Vortex";
 import Head from "next/head";
 import About from "../../components/About";
-import Contact from "../../components/ContactForm";
+import Contact from "../../components/Contact";
 import GradientSpacer from "../../components/GradientSpacer";
 import Hero from "../../components/Hero";
 import Layout from "../../components/Layouts/Layout";

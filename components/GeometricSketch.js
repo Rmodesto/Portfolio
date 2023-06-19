@@ -1,7 +1,7 @@
 import p5 from "p5";
 import { useEffect, useRef } from "react";
 
-const GeometricSketch = () => {
+const GeometricSketch = ({ colorVariant = "default" }) => {
   const canvasRef = useRef(null);
   const sketchRef = useRef(null);
 
@@ -11,15 +11,35 @@ const GeometricSketch = () => {
       let circleSize = (hexagonSize * Math.sqrt(3)) / 3;
       let rotationAngle = 40; // Set rotation angle for hexagon and green circles
 
+      //  the colors based on the colorVariant prop
+      const colors =
+        colorVariant === "default"
+          ? {
+              hexagonStroke: "#2563EB",
+              circleFill: "#2563EB",
+              circleStroke: "#3A414B",
+              greenCirclesStroke: "#059669",
+              dottedLineStroke: "#FFFFFF",
+            }
+          : {
+              hexagonStroke: "#059669",
+              circleFill: "#059669",
+              circleStroke: "#3A414B",
+              greenCirclesStroke: "#2563EB",
+              dottedLineStroke: "#FFFFFF",
+            };
+
       p.setup = () => {
         p.createCanvas(200, 200).parent(canvasRef.current);
+
         p.angleMode(p.DEGREES);
         p.background(255, 255, 255, 0);
       };
 
-      // Add a custom function to draw a dotted line
+      // function to draw a dotted line
       const drawDottedLine = (x1, y1, x2, y2, segments, strokeWeight) => {
         p.push();
+        p.stroke(colors.dottedLineStroke); // Set stroke color for the dotted line here
         p.strokeWeight(strokeWeight);
         for (let i = 0; i < segments; i++) {
           let t = i / (segments - 1);
@@ -44,6 +64,7 @@ const GeometricSketch = () => {
         let hexagonX = p.width / 2;
         let hexagonY = p.height / 2 - 10;
         let hexagonRadius = hexagonSize / 2;
+        p.stroke(colors.hexagonStroke);
         p.beginShape();
         for (let i = 0; i < 6; i++) {
           let angle = 60 * i + rotationAngle; // Add rotation angle to hexagon
@@ -57,16 +78,17 @@ const GeometricSketch = () => {
         let circleX = hexagonX;
         let circleY = hexagonY;
         let circleRadius = circleSize / 2;
-        p.fill("#2563EB ");
+
+        p.fill(colors.circleFill);
         p.strokeWeight(0.5);
-        p.stroke("#3A414B");
+        p.stroke(colors.circleStroke);
         p.ellipse(circleX, circleY, circleSize, circleSize);
 
         // draw three green border circles
         let greenCircleRadius = hexagonRadius / 2.17;
 
         p.noFill();
-        p.stroke(0, 255, 0);
+        p.stroke(colors.greenCirclesStroke);
         p.strokeWeight(0.25);
 
         for (let i = 0; i < 3; i++) {
@@ -103,7 +125,7 @@ const GeometricSketch = () => {
     return () => {
       sketchRef.current.remove();
     };
-  }, []);
+  }, [colorVariant]);
 
   return <div ref={canvasRef}></div>;
 };

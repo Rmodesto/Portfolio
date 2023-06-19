@@ -4,8 +4,13 @@ import React, { useState } from "react";
 import { cardVariants, hoverVariants, imageVariants } from "../utils/motion";
 
 const Card = React.forwardRef(
-  ({ image, title, description, stack = [] }, ref) => {
+  ({ image, title, description, stack = [], href }, ref) => {
     const [isHovered, setIsHovered] = useState(false);
+
+    // handle click event
+    const handleClick = () => {
+      window.open(href, "_blank");
+    };
 
     return (
       <motion.div
@@ -13,6 +18,7 @@ const Card = React.forwardRef(
         className="rounded-md shadow-md overflow-hidden relative"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        onClick={handleClick} // added onClick handler
         variants={cardVariants}
         initial="hidden"
         animate="show"
@@ -49,5 +55,7 @@ const Card = React.forwardRef(
     );
   }
 );
+
+Card.displayName = "Card";
 
 export default Card;

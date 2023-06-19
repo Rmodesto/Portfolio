@@ -65,8 +65,6 @@ const Sketch = (p) => {
         }
       };
 
-      // ...
-
       p.draw = () => {
         p.background("#252c38"); // Set the background to transparent
         for (let dot of dots) {

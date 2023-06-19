@@ -8,12 +8,19 @@ const Footer = () => {
   const [ref2, inView2] = useInView({ threshold: 0.1 });
   const [ref3, inView3] = useInView({ threshold: 0.1 });
 
+  const svgBackground = {
+    backgroundImage: `url(/assets/wave.svg)`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  };
+
   return (
-    <footer className="bg-black-100 py-24">
-      <div className="container flex flex-col justify-center items-center">
+    <footer className="py-24" style={svgBackground}>
+      <div className="container flex flex-col justify-center items-center md:ml-44">
         <motion.div
           ref={ref1}
-          className="flex flex-col md:flex-row justify-center items-center py-4 w-full text-center"
+          className="flex flex-col md:flex-row py-4 text-center"
           variants={footerVariants}
           initial="hidden"
           animate={inView1 ? "show" : "hidden"}
@@ -25,7 +32,7 @@ const Footer = () => {
 
         <motion.div
           ref={ref2}
-          className="flex justify-center text-white text-2xl items-center gap-2 mb-4"
+          className="flex text-white text-2xl gap-2 mb-4"
           variants={footerVariants}
           initial="hidden"
           animate={inView2 ? "show" : "hidden"}

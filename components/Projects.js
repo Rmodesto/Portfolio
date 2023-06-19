@@ -29,6 +29,7 @@ const Project = () => {
       image: "/assets/auto.webp",
       stack: ["react", "nextjs", "tailwind"],
       description: "lorem ipsumsd as dff asqqq weer",
+      href: "https://github.com/Rmodesto/portfolio",
     },
     {
       id: 2,
@@ -36,6 +37,7 @@ const Project = () => {
       image: "/assets/auto.webp",
       stack: ["react", "nextjs", "tailwind"],
       description: "lorem ipsumsd as dff asqqq weer",
+      href: "https://github.com/Rmodesto/portfolio",
     },
     {
       id: 3,
@@ -43,6 +45,7 @@ const Project = () => {
       image: "/assets/og.webp",
       stack: ["react", "nextjs", "tailwind"],
       description: "lorem ipsumsd as dff asqqq weer",
+      href: "https://github.com/Rmodesto/portfolio",
     },
     {
       id: 4,
@@ -50,6 +53,7 @@ const Project = () => {
       image: "/assets/down.webp",
       stack: ["react", "nextjs", "tailwind"],
       description: "lorem ipsumsd as dff asqqq weer",
+      href: "https://github.com/Rmodesto/portfolio",
     },
     {
       id: 5,
@@ -57,6 +61,7 @@ const Project = () => {
       image: "/assets/porsh.webp",
       stack: ["react", "nextjs", "tailwind"],
       description: "lorem ipsumsd as dff asqqq weer",
+      href: "https://github.com/Rmodesto/portfolio",
     },
     {
       id: 6,
@@ -64,6 +69,7 @@ const Project = () => {
       image: "/assets/web1.webp",
       stack: ["react", "nextjs", "tailwind"],
       description: "lorem ipsumsd as dff asqqq weer",
+      href: "https://github.com/Rmodesto/portfolio",
     },
   ];
 
@@ -102,7 +108,7 @@ const Project = () => {
 
   if (isMobile) {
     return (
-      <div className="w-full" id="projects">
+      <div className="w-full bg-black-500" id="projects">
         <Slider
           {...sliderSettings}
           dots={true}
@@ -115,6 +121,7 @@ const Project = () => {
               image={project.image}
               title={project.title}
               description={project.description}
+              onClick={() => window.open(project.href, "_blank")}
             />
           ))}
         </Slider>
@@ -139,36 +146,39 @@ const Project = () => {
     );
   } else {
     return (
-      <motion.section
-        ref={inViewRef}
-        initial="hidden"
-        animate={inView ? "show" : "exit"}
-        exit="exit"
-        variants={slideInFromRight()}
-        className="bg-black-500  pt-0.5 py-24 grid grid-cols-1 md:grid-cols-3 gap-4 items-center justify-items-center px-4 md:px-8"
-        id="projects"
-      >
-        <AnimatePresence>
-          {listProject.map((project, index) => (
-            <motion.div
-              key={project.id}
-              className="w-full px-2 md:px-4 mb-4 md:mb-8"
-              initial="hidden"
-              animate={inView ? "show" : "exit"}
-              exit="exit"
-              variants={index < 3 ? slideInFromRight() : slideInFromLeft()}
-              ref={cardRefs[index]}
-            >
-              <Card
-                image={project.image}
-                title={project.title}
-                description={project.description}
-                stack={project.stack.map((stack) => getIcon(stack)) || []}
-              />
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </motion.section>
+      <div className="bg-black-500">
+        <motion.section
+          ref={inViewRef}
+          initial="hidden"
+          animate={inView ? "show" : "exit"}
+          exit="exit"
+          variants={slideInFromRight()}
+          className=" pt-0.5 py-24 grid grid-cols-1 md:grid-cols-3 gap-4 items-center justify-items-center px-4 md:px-8"
+          id="projects"
+        >
+          <AnimatePresence>
+            {listProject.map((project, index) => (
+              <motion.div
+                key={project.id}
+                className="w-full px-2 md:px-4 mb-4 md:mb-8"
+                initial="hidden"
+                animate={inView ? "show" : "exit"}
+                exit="exit"
+                variants={index < 3 ? slideInFromRight() : slideInFromLeft()}
+                ref={cardRefs[index]}
+              >
+                <Card
+                  image={project.image}
+                  title={project.title}
+                  description={project.description}
+                  stack={project.stack.map((stack) => getIcon(stack)) || []}
+                  href={project.href}
+                />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.section>
+      </div>
     );
   }
 };

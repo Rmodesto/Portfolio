@@ -26,10 +26,10 @@ const About = () => {
           animate={inView2 ? "show" : "hidden"}
         >
           <Image
-            src="/assets/rafael.jpg"
+            src="/assets/raf.jpg"
             alt="Rafael"
             width={400}
-            height={400}
+            height={620}
             className="rounded-md z-5"
           />
         </motion.div>
@@ -43,22 +43,22 @@ const About = () => {
         >
           <motion.div variants={staggered}>
             <motion.p
-              className="mb-4 font-acumin"
+              className="mb-4 font-acumin  tracking-wide"
               ref={refPara1}
               variants={fadeIn("down", "tween", 0, 0.5)}
               initial="hidden"
               animate={inViewPara1 ? "show" : "hidden"}
             >
               As a Junior Web Developer with a foundation in Business
-              Administration and a Master's Degree in Information Systems Web
-              and App Development, I, Rafael Modesto, bring a unique perspective
-              to the digital world. My academic background has equipped me with
-              a strong understanding of the business and technical aspects of
-              web development, which I use to craft solutions that are
-              functional and user-friendly.
+              Administration and a Master&apos;s Degree in Information Systems
+              Web and App Development, I, Rafael Modesto, bring a unique
+              perspective to the digital world. My academic background has
+              equipped me with a strong understanding of the business and
+              technical aspects of web development, which I use to craft
+              solutions that are functional and user-friendly.
             </motion.p>
             <motion.p
-              className="mb-4 font-acumin"
+              className="mb-4 font-acumin  tracking-wide"
               ref={refPara2}
               variants={fadeIn("right", "tween", 0, 0.5)}
               initial="hidden"
@@ -71,7 +71,7 @@ const About = () => {
               providing a balance to my tech-focused professional life.
             </motion.p>
             <motion.p
-              className="mb-4 font-acumin"
+              className="mb-4 font-acumin  tracking-wide"
               ref={refPara3}
               variants={fadeIn("up", "tween", 0, 0.5)}
               initial="hidden"

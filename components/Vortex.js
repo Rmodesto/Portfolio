@@ -20,7 +20,7 @@ const Vortex = () => {
 
   return (
     <div
-      className="relative bg-black-500 p-6 md:p-20 min-h-screen flex items-center justify-center"
+      className="relative bg-black-500 p-6 md:p-20 min-h-screen flex items-center justify-center "
       id="vortex"
     >
       <motion.div
@@ -40,7 +40,11 @@ const Vortex = () => {
           </h2>
           <p className="pt-2 text-white tracking-wide font-acumin">
             For a more detailed overview, please feel free <br /> to check the
-            tools used in <span className="text-blue"> each project.</span>
+            tools used in{" "}
+            <span className="text-blue border-b-2 border-green">
+              {" "}
+              each project.
+            </span>
           </p>
         </motion.div>
 
@@ -54,7 +58,7 @@ const Vortex = () => {
           viewport={{ once: false, amount: 0.25 }}
         >
           <div className="h-full flex items-center justify-center">
-            <GeometricSketch />
+            <GeometricSketch colorVariant="default" />
           </div>
         </motion.div>
 
@@ -68,7 +72,7 @@ const Vortex = () => {
           viewport={{ once: false, amount: 0.25 }}
         >
           <div className="h-full flex items-center justify-center">
-            <GeometricSketch />
+            <GeometricSketch colorVariant="alternate" />
           </div>
         </motion.div>
 

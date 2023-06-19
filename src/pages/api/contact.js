@@ -35,7 +35,7 @@ const handler = async (req, res) => {
     // Then return a response.
     if (!data.name || !data.email || !data.subject || !data.message) {
       console.log(req.body);
-      res.status(400).json({ message: "Bad Request" });
+      return res.status(400).json({ message: "Bad Request" });
     }
 
     try {
@@ -44,10 +44,10 @@ const handler = async (req, res) => {
         ...generateEmailContent(data),
         subject: data.subject,
       });
-      res.status(200).json({ message: "Success" });
+      return res.status(200).json({ message: "Success" });
     } catch (error) {
       console.log(error);
-      res.status(500).json({ message: error.message });
+      return res.status(500).json({ message: error.message });
     }
   }
 };

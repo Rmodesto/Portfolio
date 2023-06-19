@@ -5,8 +5,8 @@ const getIcons = (stack) => {
   switch (stack) {
     case "react":
       return <FaReact />;
-    case "nextjs":
-      return <SiNextDotJs />;
+    // case "nextjs":
+    // return <SiNextDotJs />;
     case "tailwind":
       return <SiTailwindcss />;
     default:

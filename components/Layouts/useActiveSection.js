@@ -1,4 +1,4 @@
-// useActiveSection.js
+//useActiveSection.js
 import { useEffect, useState } from "react";
 
 const useActiveSection = (sectionIds) => {
@@ -24,12 +24,22 @@ const useActiveSection = (sectionIds) => {
       setActiveSection(currentActiveSection);
 
       // Check if we're in a browser environment
-      if (typeof window !== "undefined") {
-        // Update the URL without adding a history entry
-        if (currentActiveSection) {
-          window.history.replaceState(null, null, `#${currentActiveSection}`);
-        } else {
-          window.history.replaceState(null, null, " ");
+      if (currentActiveSection !== activeSection) {
+        setActiveSection(currentActiveSection);
+        if (typeof window !== "undefined") {
+          try {
+            if (currentActiveSection) {
+              window.history.replaceState(
+                null,
+                null,
+                `#${currentActiveSection}`
+              );
+            } else {
+              window.history.replaceState(null, null, "#");
+            }
+          } catch (err) {
+            console.error("Failed to update URL", err);
+          }
         }
       }
     };
@@ -40,7 +50,7 @@ const useActiveSection = (sectionIds) => {
     return () => {
       window.removeEventListener("scroll", onScroll);
     };
-  }, [sectionIds]);
+  }, [sectionIds, activeSection]);
 
   return activeSection;
 };

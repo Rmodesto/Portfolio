@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
-@import url("https://use.typekit.net/kuu4qka.css");
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800;900&display=swap");
 
 @font-face {
   font-family: "nasalization";
@@ -9,6 +8,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: "nasalization", "Orbitron", sans-serif;
+}
 
 .gradient-01 {
   background: linear-gradient(

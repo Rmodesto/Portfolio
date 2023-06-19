@@ -74,8 +74,8 @@ const Navbar = () => {
           >
             <Link href={`#${item.id}`}>
               <motion.button
-                className={`relative cursor-pointer hover:border-b-2 hover:border-green-500 ${
-                  activeSection === item.id ? "border-b-2 border-green-500" : ""
+                className={`relative cursor-pointer hover:border-b-2 hover:border-green ${
+                  activeSection === item.id ? "border-b-2 border-green" : ""
                 }`}
                 whileHover={{ scale: 1.1 }}
                 transition={{ type: "spring", stiffness: 300 }}

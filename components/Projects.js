@@ -28,31 +28,31 @@ const Project = () => {
       title: "Ecommerce",
       image: "/assets/auto.webp",
       stack: ["react", "nextjs", "tailwind"],
-      description: "lorem ipsumsd as dff asqqq weer",
+      description: "crud app for a eccommerce website",
       href: "https://github.com/Rmodesto/portfolio",
     },
     {
       id: 2,
-      title: "Ecommerce",
+      title: "Soul Amiga",
       image: "/assets/auto.webp",
       stack: ["react", "nextjs", "tailwind"],
-      description: "lorem ipsumsd as dff asqqq weer",
+      description: "Website for a self development company",
       href: "https://github.com/Rmodesto/portfolio",
     },
     {
       id: 3,
-      title: "Ecommerce",
+      title: "NRolando",
       image: "/assets/og.webp",
       stack: ["react", "nextjs", "tailwind"],
-      description: "lorem ipsumsd as dff asqqq weer",
+      description: "Audio player for a music  producer",
       href: "https://github.com/Rmodesto/portfolio",
     },
     {
       id: 4,
-      title: "Ecommerce",
+      title: "VBall",
       image: "/assets/down.webp",
       stack: ["react", "nextjs", "tailwind"],
-      description: "lorem ipsumsd as dff asqqq weer",
+      description: "Stickball-game and mobile app",
       href: "https://github.com/Rmodesto/portfolio",
     },
     {
@@ -65,10 +65,10 @@ const Project = () => {
     },
     {
       id: 6,
-      title: "Ecommerce",
+      title: "Dreams",
       image: "/assets/web1.webp",
       stack: ["react", "nextjs", "tailwind"],
-      description: "lorem ipsumsd as dff asqqq weer",
+      description: "Dream interpretation app",
       href: "https://github.com/Rmodesto/portfolio",
     },
   ];
@@ -79,7 +79,7 @@ const Project = () => {
     triggerOnce: true,
   });
 
-  const cardRefs = listProject.map(() => useRef());
+  const cardRefs = useRef([]);
 
   const [isMobile, setIsMobile] = useState(false);
   const [sliderRef, setSliderRef] = useState(null);

@@ -1,11 +1,11 @@
 // Logo.js
 
-const Logo = () => {
+const Logo = ({ className }) => {
   return (
-    <div className="text-white text-6xl font-bold">
-      <span className="text-green">{"<"}</span>
-      <span className="text-blue">RM</span>
-      <span className="text-green">{">"}</span>
+    <div className={`text-white font-bold ${className}`}>
+      <span className="text-green">_</span>
+      <span className="text-blue">R</span>
+      <span className="text-blue">M</span>
     </div>
   );
 };

@@ -110,3 +110,11 @@ body {
   background: #65c4fa;
   filter: blur(150px);
 }
+
+.logo-header {
+  font-size: 60px; /* adjust size as needed */
+}
+
+.logo-footer {
+  font-size: 34px; /* adjust size as needed */
+}

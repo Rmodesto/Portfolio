@@ -28,7 +28,7 @@ const Navbar = () => {
       className="fixed top-0 w-full flex items-center md:px-24 justify-between flex-wrap bg-black-500 p-6 z-10"
     >
       <div className="absolute inset-0 gradient-01" />
-      <Logo />
+      <Logo className="logo-header" />
       <div className="flex md:hidden" onClick={toggleMenu}>
         {isOpen ? (
           <svg

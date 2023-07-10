@@ -45,9 +45,11 @@ const Card = React.forwardRef(
           initial="hidden"
           animate={isHovered ? "show" : "hidden"} // use isHovered state to control animation
         >
-          <h3 className="font-semibold text-white">{title}</h3>
-          <p className="text-white font-acumin text-2xl">{description}</p>
-          <div className="flex justify-center items-center text-3xl space-x-2">
+          <h3 className="font-semibold underline underline-offset-3 text-white">
+            {title}
+          </h3>
+          <p className="text-white font-acumin text-xl">{description}</p>
+          <div className="flex justify-center items-center text-blue text-3xl space-x-2">
             {stack}
           </div>
         </motion.div>

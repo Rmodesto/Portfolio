@@ -16,8 +16,8 @@ const About = () => {
   const [refPara3, inViewPara3] = useInView({ threshold: 0.1 });
 
   return (
-    <section className="h-full py-24 md:h-auto" id="about">
-      <div className="flex bg-white flex-col md:flex-row h-full items-center mx-auto max-w-7xl">
+    <section className="h-full bg-black-100 py-24 md:h-auto" id="about">
+      <div className="flex flex-col md:flex-row h-full items-center mx-auto max-w-7xl">
         <motion.div
           className="w-full md:h-full md:w-1/2 flex items-center justify-center px-4 md:px-0"
           ref={ref2}
@@ -30,12 +30,12 @@ const About = () => {
             alt="Rafael"
             width={400}
             height={620}
-            className="rounded-md z-5"
+            className="rounded-md z-5 border-none"
           />
         </motion.div>
 
         <motion.div
-          className="bg-white w-full md:h-full md:w-1/2 p-6 flex flex-col justify-between space-y-4 px-4 md:px-0"
+          className=" text-white w-full md:h-full md:w-1/2 p-6 flex flex-col justify-between space-y-4 px-4 md:px-0"
           ref={ref1}
           variants={staggered}
           initial="hidden"
@@ -43,7 +43,7 @@ const About = () => {
         >
           <motion.div variants={staggered}>
             <motion.p
-              className="mb-4 font-acumin  tracking-wide"
+              className="mb-4 font-acumin tracking-wide"
               ref={refPara1}
               variants={fadeIn("down", "tween", 0, 0.5)}
               initial="hidden"
@@ -89,7 +89,7 @@ const About = () => {
           </motion.div>
 
           <motion.div
-            className="mt-auto flex text-black-500 space-x-3"
+            className="mt-auto flex text-white space-x-3"
             variants={staggered}
           >
             <SocialLink url="https://github.com/username" type="github" />

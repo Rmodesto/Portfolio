@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 const RocketSketch = ({ rocketAnimation, showMessage }) => {
   const [opacity, setOpacity] = useState(1);
+  const [rocketY, setRocketY] = useState(200); // new state for rocket y position
   const sketchRef = useRef();
 
   useEffect(() => {
@@ -69,6 +70,7 @@ const RocketSketch = ({ rocketAnimation, showMessage }) => {
         // rocket fire animation
         if (rocketAnimation) {
           rocket.y -= 10;
+          setRocketY(rocket.y); // update React state with new y position
         }
       };
     };
@@ -89,7 +91,8 @@ const RocketSketch = ({ rocketAnimation, showMessage }) => {
     >
       {showMessage && (
         <p className="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-white text-center">
-          Sent! We&apos;ll be in touch.
+          Sent! We&apos;ll be in touch. style={{ bottom: `${400 - rocketY}px` }}{" "}
+          // calculate bottom position
         </p>
       )}
     </div>

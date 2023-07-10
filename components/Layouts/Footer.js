@@ -1,3 +1,4 @@
+import Logo from "components/Logo";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { footerVariants } from "../../utils/motion";
@@ -25,18 +26,19 @@ const Footer = () => {
           initial="hidden"
           animate={inView1 ? "show" : "hidden"}
         >
-          <p className="text-white text-2xl inline-block">
-            RM | {new Date().getFullYear()}
-          </p>
+          <Logo className="logo-footer" />
         </motion.div>
 
         <motion.div
           ref={ref2}
-          className="flex text-white text-2xl gap-2 mb-4"
+          className="flex flex-col md:flex-row text-white text-2xl gap-2 mb-4 justify-center items-center"
           variants={footerVariants}
           initial="hidden"
           animate={inView2 ? "show" : "hidden"}
         >
+          <p className="mb-2 md:mb-0 font-acumin">
+            {new Date().getFullYear()} |{" "}
+          </p>
           <SocialLink url="https://github.com/username" type="github" />
           <SocialLink
             url="https://www.linkedin.com/in/username"

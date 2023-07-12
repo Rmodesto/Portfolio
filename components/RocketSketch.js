@@ -90,9 +90,11 @@ const RocketSketch = ({ rocketAnimation, showMessage }) => {
       }`}
     >
       {showMessage && (
-        <p className="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-white text-center">
-          Sent! We&apos;ll be in touch. style={{ bottom: `${400 - rocketY}px` }}{" "}
-          // calculate bottom position
+        <p
+          className="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-white text-center"
+          style={{ bottom: `${400 - rocketY}px` }} // calculate bottom position
+        >
+          Sent! We&apos;ll be in touch.
         </p>
       )}
     </div>

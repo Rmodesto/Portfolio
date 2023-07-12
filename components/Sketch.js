@@ -1,7 +1,7 @@
 import p5 from "p5";
 import { useEffect, useRef } from "react";
 
-const Sketch = (p) => {
+const Sketch = () => {
   const myRef = useRef();
 
   useEffect(() => {
@@ -53,12 +53,12 @@ const Sketch = (p) => {
         }
       }
 
-      // ...
-
       p.setup = () => {
         p.createCanvas(p.windowWidth, p.windowHeight);
         p.canvas.style.position = "absolute";
         p.canvas.style.zIndex = "-1";
+        p.canvas.style.top = "0";
+        p.canvas.style.left = "0";
         p.frameRate(30);
         for (let i = 0; i < 100; i++) {
           dots.push(new Dot());
@@ -66,7 +66,7 @@ const Sketch = (p) => {
       };
 
       p.draw = () => {
-        p.background("#252c38"); // Set the background to transparent
+        p.background("#252c38");
         for (let dot of dots) {
           dot.update();
           dot.display();
@@ -79,11 +79,6 @@ const Sketch = (p) => {
     };
 
     myP5 = new p5(sketch, myRef.current);
-
-    myP5.canvas.style.position = "absolute";
-    myP5.canvas.style.zIndex = "-1";
-    myP5.canvas.style.top = "0";
-    myP5.canvas.style.left = "0";
 
     return () => {
       myP5.remove();

@@ -19,7 +19,7 @@
     "framer-motion": "^4.1.17",
     "gsap": "^3.11.5",
     "jest-environment-jsdom": "^29.5.0",
-    "next": "^13.1.6",
+    "next": "^13.4.9",
     "nodemailer": "^6.9.1",
     "p5": "^1.6.0",
     "react": "18.2.0",

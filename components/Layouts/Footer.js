@@ -18,7 +18,7 @@ const Footer = () => {
 
   return (
     <footer className="py-24" style={svgBackground}>
-      <div className="container flex flex-col justify-center items-center md:ml-44">
+      <div className="container flex flex-col justify-center items-center md:ml-36">
         <motion.div
           ref={ref1}
           className="flex flex-col md:flex-row py-4 text-center"
@@ -31,7 +31,7 @@ const Footer = () => {
 
         <motion.div
           ref={ref2}
-          className="flex flex-col md:flex-row text-white text-2xl gap-2 mb-4 justify-center items-center"
+          className="flex md:flex-row flex-wrap  text-white md:text-3xl gap-2 mb-4 justify-center items-center"
           variants={footerVariants}
           initial="hidden"
           animate={inView2 ? "show" : "hidden"}
@@ -44,7 +44,6 @@ const Footer = () => {
             url="https://www.linkedin.com/in/username"
             type="linkedin"
           />
-          <SocialLink url="https://twitter.com/username" type="twitter" />
         </motion.div>
       </div>
     </footer>

@@ -163,7 +163,7 @@ const Contact = () => {
       >
         <div className="flex justify-start"></div>
         <div className="max-w-4xl mx-auto py-8 sm:flex sm:flex-row sm:justify-center">
-          <motion.div className="sm:w-1/2 sm:pr-8 relative" variants={fadeInUp}>
+          <motion.div className="sm:w-1/2 ml-6 relative" variants={fadeInUp}>
             <RocketSketch
               rocketAnimation={rocketAnimation}
               sketchRef={sketchRef}

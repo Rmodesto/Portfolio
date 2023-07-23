@@ -17,7 +17,7 @@ const About = () => {
 
   return (
     <section className="h-full bg-black-100 py-24 md:h-auto" id="about">
-      <div className="flex flex-col md:flex-row h-full items-center mx-auto max-w-7xl">
+      <div className="flex flex-col md:flex-row h-full mx-auto max-w-7xl">
         <motion.div
           className="w-full md:h-full md:w-1/2 flex items-center justify-center px-4 md:px-0"
           ref={ref2}
@@ -49,13 +49,11 @@ const About = () => {
               initial="hidden"
               animate={inViewPara1 ? "show" : "hidden"}
             >
-              As a Junior Web Developer with a foundation in Business
-              Administration and a Master&apos;s Degree in Information Systems
-              Web and App Development, I, Rafael Modesto, bring a unique
-              perspective to the digital world. My academic background has
-              equipped me with a strong understanding of the business and
-              technical aspects of web development, which I use to craft
-              solutions that are functional and user-friendly.
+              I'm a Junior Web Developer with a solid grounding in Business
+              Administration and a Master&apos;s in Information Systems Web and
+              App Development. This unique combo allows me to bridge the gap
+              between business needs and technical possibilities, creating
+              solutions that are as practical as they are user-friendly.
             </motion.p>
             <motion.p
               className="mb-4 font-acumin  tracking-wide"
@@ -64,11 +62,11 @@ const About = () => {
               initial="hidden"
               animate={inViewPara2 ? "show" : "hidden"}
             >
-              When it comes to my personal life, my passions extend beyond the
-              realm of technology. I have a deep appreciation for art and music,
-              and I enjoy spending my free time making beats and cycling. These
-              hobbies allow me to express my creativity and stay active,
-              providing a balance to my tech-focused professional life.
+              But life isn't all about code and algorithms! When I'm not solving
+              digital puzzles, you'll find me immersed in music and art,
+              crafting beats, or cycling around the city. These passions keep me
+              balanced, inspired, and ready to bring a fresh, creative
+              perspective to every project.
             </motion.p>
             <motion.p
               className="mb-4 font-acumin  tracking-wide"
@@ -77,14 +75,7 @@ const About = () => {
               initial="hidden"
               animate={inViewPara3 ? "show" : "hidden"}
             >
-              In the realm of web development, I am constantly looking for
-              opportunities to learn, grow, and contribute to the digital
-              landscape. My goal is to use my skills and knowledge to create
-              impactful digital solutions that not only meet business needs but
-              also provide a seamless experience for users. With a blend of
-              technical expertise, business acumen, and a passion for continual
-              learning, I am excited about the opportunities and challenges that
-              lie ahead in my web development career.
+              So, let's make something incredible together.
             </motion.p>
           </motion.div>
 
@@ -92,12 +83,15 @@ const About = () => {
             className="mt-auto flex text-white space-x-3"
             variants={staggered}
           >
-            <SocialLink url="https://github.com/username" type="github" />
+            <SocialLink
+              url="https://github.com/username"
+              type="github"
+              size=""
+            />
             <SocialLink
               url="https://www.linkedin.com/in/username"
               type="linkedin"
             />
-            <SocialLink url="https://twitter.com/username" type="twitter" />
           </motion.div>
         </motion.div>
       </div>

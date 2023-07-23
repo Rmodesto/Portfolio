@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const SocialLink = ({ url, type, variants }) => {
   const getIcon = () => {
@@ -8,8 +8,7 @@ const SocialLink = ({ url, type, variants }) => {
         return <FaGithub className="w-6 h-6" />;
       case "linkedin":
         return <FaLinkedin className="w-6 h-6" />;
-      case "twitter":
-        return <FaTwitter className="w-6 h-6" />;
+
       default:
         return null;
     }

@@ -32,7 +32,7 @@ const Hero = () => {
           initial="hidden"
           animate={inView ? "show" : "exit"}
         >
-          Hello, I&apos;m <span className="text-blue">Rafael</span>
+          Welcome, I&apos;m <span className="text-blue">Rafael</span>
         </motion.h1>
         <motion.p
           className="hero__subtitle md:text-5xl text-4xl text-white font-acumin tracking-wide pt-3"
@@ -40,7 +40,7 @@ const Hero = () => {
           initial="hidden"
           animate={inView ? "show" : "exit"}
         >
-          I&apos;m a Web Developer based in NYC
+          I&apos;m a Software Developer based in NYC
         </motion.p>
         <motion.p
           className="md:text-xl text-md text-white font-acumin tracking-widest font-thin pt-3"
@@ -48,8 +48,9 @@ const Hero = () => {
           initial="hidden"
           animate={inView ? "show" : "exit"}
         >
-          I&apos;m passionate about building{" "}
-          <span className="text-blue"> interactive</span> web applications.
+          I&apos;m passionate vabout building{" "}
+          <span className="text-blue"> interactive</span> web applications and
+          digital content.
         </motion.p>
         <div className="pt-5">
           <motion.div

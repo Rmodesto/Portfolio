@@ -26,7 +26,7 @@ const About = () => {
           animate={inView2 ? "show" : "hidden"}
         >
           <Image
-            src="/assets/raf.jpg"
+            src="/assets/raf1.jpg"
             alt="Rafael"
             width={400}
             height={620}
@@ -49,7 +49,7 @@ const About = () => {
               initial="hidden"
               animate={inViewPara1 ? "show" : "hidden"}
             >
-              I'm a Junior Web Developer with a solid grounding in Business
+              I&apos;m a Junior Web Developer with a solid grounding in Business
               Administration and a Master&apos;s in Information Systems Web and
               App Development. This unique combo allows me to bridge the gap
               between business needs and technical possibilities, creating
@@ -62,11 +62,11 @@ const About = () => {
               initial="hidden"
               animate={inViewPara2 ? "show" : "hidden"}
             >
-              But life isn't all about code and algorithms! When I'm not solving
-              digital puzzles, you'll find me immersed in music and art,
-              crafting beats, or cycling around the city. These passions keep me
-              balanced, inspired, and ready to bring a fresh, creative
-              perspective to every project.
+              But life isn&apos;t all about code and algorithms! When I&apos;m
+              not solving digital puzzles, you&apos;ll find me immersed in music
+              and art, crafting beats, or cycling around the city. These
+              passions keep me balanced, inspired, and ready to bring a fresh,
+              creative perspective to every project.
             </motion.p>
             <motion.p
               className="mb-4 font-acumin  tracking-wide"
@@ -75,7 +75,7 @@ const About = () => {
               initial="hidden"
               animate={inViewPara3 ? "show" : "hidden"}
             >
-              So, let's make something incredible together.
+              So, let&apos;s make something incredible together.
             </motion.p>
           </motion.div>
 

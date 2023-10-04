@@ -20,7 +20,7 @@ const Hero = () => {
   return (
     <section
       ref={ref}
-      className="hero relative bg-black-500 flex items-center justify-center min-h-screen bg-gray-900 z-0"
+      className="hero relative bg-black-500 sm:pt-20 pl-8 flex items-center justify-center min-h-screen bg-gray-900 z-0"
     >
       <div className="sketch-wrapper absolute w-full h-full inset-0 overflow-hidden z-0">
         <Sketch />

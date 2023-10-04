@@ -45,7 +45,7 @@ const Card = React.forwardRef(
           initial="hidden"
           animate={isHovered ? "show" : "hidden"} // use isHovered state to control animation
         >
-          <h3 className="font-semibold underline underline-offset-3 text-white">
+          <h3 className="font-semibold border-b-2 border-green text-white">
             {title}
           </h3>
           <p className="text-white font-acumin text-xl">{description}</p>

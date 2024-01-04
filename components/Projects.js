@@ -25,10 +25,10 @@ const Project = () => {
   const listProject = [
     {
       id: 1,
-      title: "Ecommerce",
-      image: "/assets/auto.webp",
+      title: "Dream Whisper",
+      image: "/assets/dreamwhisper.webp",
       stack: ["react", "nextjs", "tailwind"],
-      description: "crud app for a eccommerce website",
+      description: "crud app and Ai chatbot application",
       href: "https://github.com/Rmodesto/portfolio",
     },
     {
@@ -57,10 +57,10 @@ const Project = () => {
     },
     {
       id: 5,
-      title: "Ecommerce",
-      image: "/assets/porsh.webp",
+      title: "dotzz",
+      image: "/assets/dotzz.webp",
       stack: ["react", "nextjs", "tailwind"],
-      description: "lorem ipsumsd as dff asqqq weer",
+      description: "dotzz is an end-to-end encrypted platform for survivors of Intimate Partner Violence [IPV] and Gender Based Violence [GBV]",
       href: "https://github.com/Rmodesto/portfolio",
     },
     {

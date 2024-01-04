@@ -48,7 +48,7 @@ const Hero = () => {
           initial="hidden"
           animate={inView ? "show" : "exit"}
         >
-          I&apos;m passionate vabout building{" "}
+          I&apos;m passionate about building{" "}
           <span className="text-blue"> interactive</span> web applications and
           digital content.
         </motion.p>

@@ -21,7 +21,7 @@ const Footer = () => {
       <div className="container flex flex-col justify-center items-center md:ml-36">
         <motion.div
           ref={ref1}
-          className="flex flex-col md:flex-row py-4 text-center"
+          className="flex flex-col md:flex-row md:-ml-48 py-4 text-center"
           variants={footerVariants}
           initial="hidden"
           animate={inView1 ? "show" : "hidden"}
@@ -36,7 +36,7 @@ const Footer = () => {
           initial="hidden"
           animate={inView2 ? "show" : "hidden"}
         >
-          <p className="mb-2 md:mb-0 font-acumin">
+          <p className="mb-2 md:mb-0 md:-ml-48 font-acumin">
             {new Date().getFullYear()} |{" "}
           </p>
           <SocialLink url="https://github.com/username" type="github" />

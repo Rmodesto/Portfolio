@@ -35,7 +35,7 @@ const About = () => {
         </motion.div>
 
         <motion.div
-          className=" text-white w-full md:h-full md:w-1/2 p-6 flex flex-col justify-between space-y-4 px-4 md:px-0"
+          className=" text-white -mt-6 w-full md:h-full md:w-1/2 p-6 flex flex-col justify-between space-y-4 px-4 md:px-0"
           ref={ref1}
           variants={staggered}
           initial="hidden"
@@ -43,18 +43,20 @@ const About = () => {
         >
           <motion.div variants={staggered}>
             <motion.p
-              className="mb-4 font-acumin tracking-wide"
+              className="mb-2 font-acumin tracking-wide"
               ref={refPara1}
               variants={fadeIn("down", "tween", 0, 0.5)}
               initial="hidden"
               animate={inViewPara1 ? "show" : "hidden"}
             >
-              I&apos;m a Junior Web Developer with a solid grounding in Business
-              Administration and a Master&apos;s in Information Systems Web and
-              App Development. This unique combo allows me to bridge the gap
-              between business needs and technical possibilities, creating
-              solutions that are as practical as they are user-friendly.
+              Greetings! I am a dedicated Web Developer with a solid track record of 6 years
+              in developing engaging web applications. My academic journey is marked by a unique
+              combination of business insight and advanced technology, having completed a 
+              Master&apos;s in Information Systems Web and App Development. This distinct blend 
+              empowers me to effectively align technological solutions with business goals, creating
+              outcomes that are both technically proficient and strategically sound.  
             </motion.p>
+           
             <motion.p
               className="mb-4 font-acumin  tracking-wide"
               ref={refPara2}
@@ -62,11 +64,9 @@ const About = () => {
               initial="hidden"
               animate={inViewPara2 ? "show" : "hidden"}
             >
-              But life isn&apos;t all about code and algorithms! When I&apos;m
-              not solving digital puzzles, you&apos;ll find me immersed in music
-              and art, crafting beats, or cycling around the city. These
-              passions keep me balanced, inspired, and ready to bring a fresh,
-              creative perspective to every project.
+              Beyond the realm of coding and digital solutions, my world is enriched by a deep passion 
+              for music and art. Whether I'm experimenting with new beats or exploring the urban landscape 
+              on my bike, these interests infuse my professional endeavors with creativity and a fresh perspective.
             </motion.p>
             <motion.p
               className="mb-4 font-acumin  tracking-wide"
@@ -75,7 +75,9 @@ const About = () => {
               initial="hidden"
               animate={inViewPara3 ? "show" : "hidden"}
             >
-              So, let&apos;s make something incredible together.
+            My approach to web development is centered around a synergy of technical skill, business acumen, and creative vision.
+            If you're in search of a Web Developer who can contribute a novel and effective perspective to your projects, I'm eager 
+            to collaborate. Together, let's craft exceptional experiences and innovative solutions!
             </motion.p>
           </motion.div>
 

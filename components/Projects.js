@@ -60,7 +60,7 @@ const Project = () => {
       title: "dotzz",
       image: "/assets/dotzz.webp",
       stack: ["react", "nextjs", "tailwind"],
-      description: "dotzz is an end-to-end encrypted platform for survivors of Intimate Partner Violence [IPV] and Gender Based Violence [GBV]",
+      description: "dotzz is an end-to-end encrypted platform for survivors of Intimate Partner Violence",
       href: "https://github.com/Rmodesto/portfolio",
     },
     {

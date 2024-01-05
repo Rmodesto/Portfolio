@@ -65,7 +65,7 @@ const About = () => {
               animate={inViewPara2 ? "show" : "hidden"}
             >
               Beyond the realm of coding and digital solutions, my world is enriched by a deep passion 
-              for music and art. Whether I'm experimenting with new beats or exploring the urban landscape 
+              for music and art. Whether I&aposm experimenting with new beats or exploring the urban landscape 
               on my bike, these interests infuse my professional endeavors with creativity and a fresh perspective.
             </motion.p>
             <motion.p
@@ -76,8 +76,8 @@ const About = () => {
               animate={inViewPara3 ? "show" : "hidden"}
             >
             My approach to web development is centered around a synergy of technical skill, business acumen, and creative vision.
-            If you're in search of a Web Developer who can contribute a novel and effective perspective to your projects, I'm eager 
-            to collaborate. Together, let's craft exceptional experiences and innovative solutions!
+            If you&aposre in search of a Web Developer who can contribute a novel and effective perspective to your projects, I&aposm eager 
+            to collaborate. Together, let&aposs craft exceptional experiences and innovative solutions!
             </motion.p>
           </motion.div>
 

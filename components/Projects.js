@@ -26,7 +26,7 @@ const Project = () => {
     {
       id: 1,
       title: "Dream Whisper",
-      image: "/assets/dreamwhisper.webp",
+      image: "/assets/DreamWhisper.webp",
       stack: ["react", "nextjs", "tailwind"],
       description: "crud app and Ai chatbot application",
       href: "https://github.com/Rmodesto/portfolio",

@@ -43,7 +43,7 @@ const Hero = () => {
           I&apos;m a Software Developer based in NYC
         </motion.p>
         <motion.p
-          className="md:text-xl text-md text-white font-acumin tracking-widest font-thin pt-3"
+          className="md:text-xl text-md text-white font-acumin tracking-widest sm:p-2 font-thin pt-3"
           variants={slideIn("left", "tween", 0, 0.5)}
           initial="hidden"
           animate={inView ? "show" : "exit"}

@@ -41,45 +41,46 @@ const About = () => {
           initial="hidden"
           animate={inView1 ? "show" : "hidden"}
         >
-          <motion.div variants={staggered}>
-            <motion.p
-              className="mb-2 font-acumin tracking-wide"
-              ref={refPara1}
-              variants={fadeIn("down", "tween", 0, 0.5)}
-              initial="hidden"
-              animate={inViewPara1 ? "show" : "hidden"}
-            >
-              Greetings! I am a dedicated Web Developer with a solid track record of 6 years
-              in developing engaging web applications. My academic journey is marked by a unique
-              combination of business insight and advanced technology, having completed a 
-              Master&apos;s in Information Systems Web and App Development. This distinct blend 
-              empowers me to effectively align technological solutions with business goals, creating
-              outcomes that are both technically proficient and strategically sound.  
-            </motion.p>
-           
-            <motion.p
-              className="mb-4 font-acumin  tracking-wide"
-              ref={refPara2}
-              variants={fadeIn("right", "tween", 0, 0.5)}
-              initial="hidden"
-              animate={inViewPara2 ? "show" : "hidden"}
-            >
-              Beyond the realm of coding and digital solutions, my world is enriched by a deep passion 
-              for music and art. Whether I&aposm experimenting with new beats or exploring the urban landscape 
-              on my bike, these interests infuse my professional endeavors with creativity and a fresh perspective.
-            </motion.p>
-            <motion.p
-              className="mb-4 font-acumin  tracking-wide"
-              ref={refPara3}
-              variants={fadeIn("up", "tween", 0, 0.5)}
-              initial="hidden"
-              animate={inViewPara3 ? "show" : "hidden"}
-            >
-            My approach to web development is centered around a synergy of technical skill, business acumen, and creative vision.
-            If you&aposre in search of a Web Developer who can contribute a novel and effective perspective to your projects, I&aposm eager 
-            to collaborate. Together, let&aposs craft exceptional experiences and innovative solutions!
-            </motion.p>
-          </motion.div>
+    <motion.div variants={staggered}>
+    <motion.p
+      className="mb-2 font-acumin tracking-wide"
+      ref={refPara1}
+      variants={fadeIn("down", "tween", 0, 0.5)}
+      initial="hidden"
+      animate={inViewPara1 ? "show" : "hidden"}
+    >
+      Greetings! I am a dedicated Web Developer with a solid track record of 6 years
+      in developing engaging web applications. My academic journey is marked by a unique
+      combination of business insight and advanced technology, having completed a 
+      Master&apos;s in Information Systems Web and App Development. This distinct blend 
+      empowers me to effectively align technological solutions with business goals, creating
+      outcomes that are both technically proficient and strategically sound.  
+    </motion.p>
+   
+    <motion.p
+      className="mb-4 font-acumin  tracking-wide"
+      ref={refPara2}
+      variants={fadeIn("right", "tween", 0, 0.5)}
+      initial="hidden"
+      animate={inViewPara2 ? "show" : "hidden"}
+    >
+      Beyond the realm of coding and digital solutions, my world is enriched by a deep passion 
+      for music and art. Whether I&apos;m experimenting with new beats or exploring the urban landscape 
+      on my bike, these interests infuse my professional endeavors with creativity and a fresh perspective.
+    </motion.p>
+    <motion.p
+      className="mb-4 font-acumin  tracking-wide"
+      ref={refPara3}
+      variants={fadeIn("up", "tween", 0, 0.5)}
+      initial="hidden"
+      animate={inViewPara3 ? "show" : "hidden"}
+    >
+    My approach to web development is centered around a synergy of technical skill, business acumen, and creative vision.
+    If you&apos;re in search of a Web Developer who can contribute a novel and effective perspective to your projects, I&apos;m eager 
+    to collaborate. Together, let&apos;s craft exceptional experiences and innovative solutions!
+    </motion.p>
+</motion.div>
+
 
           <motion.div
             className="mt-auto flex text-white space-x-3"
